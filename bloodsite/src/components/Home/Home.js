@@ -16,7 +16,12 @@ class Home extends Component
         return(
             <React.Fragment>
                 {redirect}
-                <p className={classes.para}>Home friends</p>
+                <p className={classes.para}>Please Fill the survey</p>
+                <div>
+                    <form>
+                        
+                    </form>
+                </div>
             </React.Fragment>
         )
     }

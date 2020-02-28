@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Snowfall from 'react-snowfall'
+import Snowfall from 'react-snowfall';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 import {connect} from 'react-redux';
@@ -27,10 +27,11 @@ class Layout extends Component
     {
         return (
         <React.Fragment>
-            <Snowfall
-                    color="red"
-                    snowflakeCount={200}
-            />
+                 <Snowfall
+                        color="red"
+                        snowflakeCount={300}
+                /> 
+                
             <Toolbar isAuth={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler}/>
             <SideDrawer isAuth={this.props.isAuthenticated} open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
             <main style={{marginTop:"70px"}}>

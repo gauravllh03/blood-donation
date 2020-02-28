@@ -126,6 +126,7 @@ class Auth extends Component
                    invalid={!formElement.config.valid} 
                    shouldValidate={formElement.config.validation}
                    touched={formElement.config.touched} />
+
         ))
 
         if(this.props.loading)
@@ -175,7 +176,7 @@ class Auth extends Component
                     
                     {form}
                     <br></br>
-                    <Button btnType="Success" >Submit</Button>
+                    <Button btnType="Success" >{this.state.isSignUp? "SIGN UP" :"SIGN IN"}</Button>
                 </form>
                 <Button btnType="Danger" clicked={this.switchAuthModeHandler}>Switch to {this.state.isSignUp?"SignIn":"SignUp"}</Button>
 
