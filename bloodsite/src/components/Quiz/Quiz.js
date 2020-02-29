@@ -21,8 +21,25 @@ class Quiz extends Component
           answer: '',
           answersCount: {},
           result: '',
+          email:localStorage.getItem('email'),
         };
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleSubmit () {
+        const templateId = 'template_j1qCyvOQ';
+        this.sendFeedback(templateId, {reply_to: this.state.email, to_name:this.state.email});
+    }
+
+    sendFeedback (templateId, variables) {
+    window.emailjs.send(
+        'gmail', templateId,
+        variables
+        ).then(res => {
+        console.log('Email successfully sent!')
+        })
+        // Handle errors here however you like, or use a React error boundary
+        .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))
     }
     componentDidMount() {
         const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));  
@@ -96,6 +113,7 @@ class Quiz extends Component
     setResults (result) {
         if (result.length === 1) {
           this.setState({ result: result[0] });
+          this.handleSubmit();
         } else {
           this.setState({ result: 'Undetermined' });
         }

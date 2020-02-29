@@ -11,6 +11,7 @@ import Logout from './components/Logout/Logout';
 import Auth from './components/Auth/Auth';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
+import FactsPage from './components/FactsPage/FactsPage';
 
 class App extends Component {
   componentDidMount()
@@ -21,7 +22,7 @@ class App extends Component {
     let routes=(
       <Switch>
       <Route path="/home" exact component={Home} /> 
-      {/* <Route path="/donate" exact component={Donate}/> */}
+      <Route path="/donate" exact component={FactsPage}/> 
       <Route path="/quiz" exact component={Quiz}/>
       <Route path='/stats' exact component={Statistics}/>
       <Route path="/research" exact component={Research}/>

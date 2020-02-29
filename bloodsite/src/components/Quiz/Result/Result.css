@@ -2,4 +2,30 @@
     padding: 1.5rem 2.5rem;
     color: white;
   }
-  
+.correctPer{
+  height:150px;
+  width:150px;
+  float:left;
+  margin-left:25%;
+}
+.incorrectPer{
+  height:150px;
+  width:150px;
+  float:right;
+  margin-right:25%;
+}
+.getLives{
+  clear: both;
+  width: fit-content;
+  margin-top: 24px;
+  margin: auto;
+}
+@media(max-width:600px)
+{ 
+  .correctPer{
+    margin-left:10%;
+  }
+  .incorrectPer{
+    margin-right:10%;
+  }
+}

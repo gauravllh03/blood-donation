@@ -1,10 +1,15 @@
 import React,{Component} from 'react';
+import classes from './Facts.css';
 class Facts extends Component
 {
     render()
     {
+        console.log(this.props.myth);
         return(
-                <p style={{fontFamily:'Nosifer'}}>Did you know ?</p>
+            <div className={classes.Facts}>
+                <p style={{fontFamily:'Nosifer'}}>Myth : {this.props.myth}</p>
+                <p>Fact : {this.props.fact}</p>
+            </div>
         );
     }
 }
