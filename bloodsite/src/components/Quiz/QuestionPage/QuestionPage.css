@@ -1,0 +1,18 @@
+.answerOptions {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: white;
+  }
+.quiz{
+    width: 50%;
+    border: 1px solid black;
+    margin: auto;
+}
+.questionCount{
+    width:50%;
+}
+.hearts{
+    float:right;
+    padding-right: 2.5rem;
+}

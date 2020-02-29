@@ -5,6 +5,7 @@ const initialState={
     userId:null,
     error:null,
     loading:false,
+    lives:1
 };
 
 const reducer=(state=initialState,action)=>{
@@ -38,6 +39,11 @@ const reducer=(state=initialState,action)=>{
                 ...state,
                 token:null,
                 userId:null
+            }
+        case actionTypes.SUBTRACT_LIFE:
+            return{
+                ...state,
+                lives:action.lives
             }
             /*
         case actionTypes.SET_AUTH_REDIRECT_PATH:

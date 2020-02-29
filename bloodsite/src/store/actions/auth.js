@@ -39,6 +39,13 @@ export const checkAuthTimeout=(expirationTime)=>{
     }
 }
 
+export const subtract=(lives)=>{
+    return{
+        type:actionTypes.SUBTRACT_LIFE,
+        lives:lives-1
+    }
+}
+
 export const auth=(email,password,isSignUp)=>{
     return dispatch=>{
         dispatch(authStart());
