@@ -5,6 +5,7 @@ import Research from './components/Research/Research';
 import Home from './components/Home/Home';
 import Donate from './components/Donate/Donate';
 import Quiz from './components/Quiz/Quiz';
+import Statistics from './components/Statistics/Statistics';
 import {Route,Switch,Redirect,withRouter} from 'react-router-dom';
 import Logout from './components/Logout/Logout';
 import Auth from './components/Auth/Auth';
@@ -22,6 +23,7 @@ class App extends Component {
       <Route path="/home" exact component={Home} /> 
       <Route path="/donate" exact component={Donate}/>
       <Route path="/quiz" exact component={Quiz}/>
+      <Route path='/stats' exact component={Statistics}/>
       <Route path="/research" exact component={Research}/>
       <Route path="/logout" exact component={Logout}/>
       <Route path="/" exact component={Auth}/>

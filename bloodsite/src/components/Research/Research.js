@@ -2,6 +2,7 @@ import React,{ Component } from "react";
 import classes from './Research.css';
 import {connect} from 'react-redux';
 import { Redirect } from "react-router";
+import Facts from '../Facts/Facts';
 class Research extends Component
 {
     render()
@@ -15,6 +16,7 @@ class Research extends Component
             <React.Fragment>
                 {redirect}
                 <p className={classes.para}>Research work friends</p>
+                <Facts/>
             </React.Fragment>
         )
     }
