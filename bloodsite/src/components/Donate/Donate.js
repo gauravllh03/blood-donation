@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import { Redirect } from "react-router";
 class Donate extends Component
 {
+    componentWillMount()
+    {
+              window.location.replace('file:///C:/Users/Gaurav%20Damani/Desktop/ecellhack/here%20map/page.html');
+    }
     render()
     {
         let redirect=null;

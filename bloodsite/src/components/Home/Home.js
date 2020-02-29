@@ -154,8 +154,7 @@ class Home extends Component
             "Total Volume Donated (c.c.)":this.state.controls.totalVol.value,
             "Months since First Donation":this.state.controls.monthFirst.value,
         };
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        fetch(proxyurl+'http://127.0.0.1:5000/pred/', 
+        fetch('http://127.0.0.1:5000/pred/', 
         {
             headers: {
                 'Accept': 'application/json',

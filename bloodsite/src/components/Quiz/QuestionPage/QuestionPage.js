@@ -19,7 +19,7 @@ const questionPage = (props) =>{
     }
     var hearts=[];
     for(let i=0;i<props.lives;i++)
-      hearts.push(<i className="fa fa-heart" key={i} style={{color:"red"}}></i>);
+      hearts.push(<i className="fa fa-heart" key={i} style={{color:"red",padding:"5px"}}></i>);
 
     return (
         <div className={classes.quiz}>

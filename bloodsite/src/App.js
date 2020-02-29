@@ -21,13 +21,14 @@ class App extends Component {
     let routes=(
       <Switch>
       <Route path="/home" exact component={Home} /> 
-      <Route path="/donate" exact component={Donate}/>
+      {/* <Route path="/donate" exact component={Donate}/> */}
       <Route path="/quiz" exact component={Quiz}/>
       <Route path='/stats' exact component={Statistics}/>
       <Route path="/research" exact component={Research}/>
       <Route path="/logout" exact component={Logout}/>
       <Route path="/" exact component={Auth}/>
-      <Redirect to="/"/>
+      
+      
     </Switch>
     );
 

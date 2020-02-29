@@ -4,7 +4,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 const navigationItems=(props)=>(
     <ul className={classes.NavigationItems}>
         <NavigationItem link="/home"><i className="fa fa-home" style={{fontSize:24}}></i> Home</NavigationItem>
-        <NavigationItem link="/donate"><i className="fa fa-tint" style={{fontSize:24}}></i>  Donate</NavigationItem>
+        <NavigationItem link="/file:///C:/Users/Gaurav%20Damani/Desktop/ecellhack/here%20map/page.html"><i className="fa fa-tint" style={{fontSize:24}}></i>  Donate</NavigationItem>
         <NavigationItem link="/quiz"><i className="fa fa-question" style={{fontSize:24}}></i>  Quiz</NavigationItem>
         <NavigationItem link="/stats"><i className="fa fa-pie-chart" style={{fontSize:24}}></i> Statistics</NavigationItem>
         <NavigationItem link="/research"><i className="fa fa-university" style={{fontSize:24}}></i>  Research</NavigationItem>

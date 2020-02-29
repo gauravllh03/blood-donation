@@ -3,10 +3,11 @@ from flask import request, jsonify
 import os
 import pandas as pd
 
-
+from flask_cors import CORS, cross_origin
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+cors = CORS(app)
+
 
 
 
