@@ -22,11 +22,7 @@ class App extends Component {
     let routes=(
       <Switch>
       <Route path="/home" exact component={Home} /> 
-<<<<<<< HEAD
-      <Route path="/donate" exact component={FactsPage}/> 
-=======
       <Route path="/donate" exact component={Donate}/>
->>>>>>> 00b336785047d90f22a7ff52fc6abaa9137ddd53
       <Route path="/quiz" exact component={Quiz}/>
       <Route path='/stats' exact component={Statistics}/>
       <Route path="/research" exact component={Research}/>
