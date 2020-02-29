@@ -3,8 +3,97 @@ import classes from './Statistics.css';
 import {connect} from 'react-redux';
 import { Redirect } from "react-router";
 import PieChart from 'react-simple-pie-chart';
+import axios from 'axios';
 class Statistics extends Component
 {
+    state={
+        data:null,
+        currCurrency:0,
+        stat:{
+            "O+":0,
+            "O-":0,
+            "AB+":0,
+            "AB-":0,
+            "A":0,
+            "B":0
+        }
+    }
+    componentWillMount()
+    {
+        axios.get('https://bloodsite-87a36.firebaseio.com/donated.json')
+        .then(resp=>{
+            console.log(resp.data);
+            let fetchedBlood=[];
+            for(let key in resp.data)
+            {
+                fetchedBlood.push({...resp.data[key],id:key});
+            }
+            console.log(fetchedBlood);
+            let val=0;
+            for(let k in fetchedBlood)
+            {
+                if(fetchedBlood[k].uid == this.props.token)
+                {
+                    val+=parseInt(fetchedBlood[k].volume);
+                    console.log('true');
+                }
+            }
+
+            let blood={
+                "O+":0,
+                "O-":0,
+                "AB+":0,
+                "AB-":0,
+                "A":0,
+                "B":0
+            };
+
+            for(let x in fetchedBlood)
+            {
+                console.log(fetchedBlood[x].bloodgroup);
+                if(fetchedBlood[x].bloodgroup=="O+")
+                {
+                    blood['O+']+=parseInt(fetchedBlood[x].volume);
+                }
+                if(fetchedBlood[x].bloodgroup=="O-")
+                {
+                    console.log('True');
+                    blood['O-']+=parseInt(fetchedBlood[x].volume);
+                }
+                if(fetchedBlood[x].bloodgroup=="AB+")
+                {
+                    console.log('True');
+                    blood['AB+']+=parseInt(fetchedBlood[x].volume);
+                }
+                if(fetchedBlood[x].bloodgroup=="AB-")
+                {
+                    console.log('True');
+                    blood['AB-']+=parseInt(fetchedBlood[x].volume);
+                }
+                if(fetchedBlood[x].bloodgroup=="A")
+                {
+                    console.log('True');
+                    blood['A']+=parseInt(fetchedBlood[x].volume);
+                }
+                if(fetchedBlood[x].bloodgroup=="B")
+                {
+                    console.log('True');
+                    blood['B']+=parseInt(fetchedBlood[x].volume);
+                }
+            }
+            this.setState({stat:blood});
+            console.log(blood);
+            //console.log((this.props.token));
+            console.log(val);
+            this.setState({currCurrency:val})
+            //console.log((fetchedBlood[0].uid));
+            this.setState({data:fetchedBlood});
+            
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
     render()
     {
         let redirect=null;
@@ -21,23 +110,33 @@ class Statistics extends Component
                         slices={[
                             {
                             color: '#f00',
-                            value: 10,
+                            value: this.state.stat['O-'],
                             },
                             {
-                            color: '#0f0',
-                            value: 20,
+                            color: '#OB6623',
+                            value: this.state.stat["O+"]
                             },
                             {
-                                color: '#0ff',
-                                value: 20,
+                                color: '#4F7942',
+                                value: this.state.stat["AB+"],
                             },
                             {
-                                color: '#fff',
-                                value: 20,
-                                },
+                                color: '#3F704D',
+                                value: this.state.stat["AB-"],
+                            },
+                            {
+                                color: '#4B5320',
+                                value: this.state.stat["A"],
+                            },
+                            {
+                                color: '#50C878',
+                                value: this.state.stat["A"],
+                            },
+
                         ]}
                     />
                 </div>
+                
             </React.Fragment>
         )
     }
@@ -45,7 +144,8 @@ class Statistics extends Component
 
 const mapStateToProps=state=>{
     return{
-        isAuthenticated:state.token!==null
+        isAuthenticated:state.token!==null,
+        token:state.token
     };
 }
 export default connect(mapStateToProps)(Statistics);
