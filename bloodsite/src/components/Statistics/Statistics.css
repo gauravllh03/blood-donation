@@ -5,3 +5,32 @@
     text-shadow: 0px 2px red;
     text-align: center;
 }
+.foo {
+    margin: px 12px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    opacity: 0.7;
+}
+.text{
+    margin: 8px 16px;
+    color: white;
+}
+.curr{
+    margin: 48px 16px;
+    color: white;
+    font-size: larger;
+    font-weight: 400;
+    margin: auto;
+    width: fit-content;
+}
+.foom {
+    display: -webkit-box;           
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;     
+    display: flex;
+    margin: auto;
+    width: fit-content;
+    margin-top: 48px;
+}
