@@ -105,7 +105,7 @@ class Statistics extends Component
             <React.Fragment>
                 {redirect}
                 <p className={classes.para}>Statistics work friends</p>
-                <div style={{width:"200px",height:"200px",margin:"auto",opacity:"0.5"}}>
+                <div style={{width:"200px",height:"200px",margin:"auto",opacity:"0.7"}}>
                     <PieChart
                         slices={[
                             {
@@ -113,30 +113,44 @@ class Statistics extends Component
                             value: this.state.stat['O-'],
                             },
                             {
-                            color: '#OB6623',
+                            color: '#0B6623',
                             value: this.state.stat["O+"]
                             },
                             {
-                                color: '#4F7942',
+                                color: '#ffd500',
                                 value: this.state.stat["AB+"],
                             },
                             {
-                                color: '#3F704D',
+                                color: '#3c00ff',
                                 value: this.state.stat["AB-"],
                             },
                             {
-                                color: '#4B5320',
+                                color: '#cc00ff',
                                 value: this.state.stat["A"],
                             },
                             {
                                 color: '#50C878',
-                                value: this.state.stat["A"],
+                                value: this.state.stat["B"],
                             },
 
                         ]}
                     />
                 </div>
-                
+                <div className={classes.foom}>
+                    <div className={classes.foo} style={{background:"#f00"}}></div>
+                    <div className={classes.text}>O- {this.state.stat["O-"]}</div>
+                    <div className={classes.foo} style={{background:"#0B6623"}}></div>
+                    <div className={classes.text}>O+ {this.state.stat["O+"]}</div>
+                    <div className={classes.foo} style={{background:"#ffd500"}}></div>
+                    <div className={classes.text} >AB+ {this.state.stat["AB+"]}</div>
+                    <div className={classes.foo} style={{background:"#3c00ff"}}></div>
+                    <div className={classes.text}>AB- {this.state.stat["AB-"]}</div>
+                    <div className={classes.foo} style={{background:"#cc00ff"}}></div>
+                    <div className={classes.text}>A {this.state.stat["A"]}</div>
+                    <div className={classes.foo} style={{background:"#50C878"}}></div>
+                    <div className={classes.text}>B {this.state.stat["B"]}</div>
+                </div>
+                <p className={classes.curr}>Your Available currency : {this.state.currCurrency}</p>
             </React.Fragment>
         )
     }

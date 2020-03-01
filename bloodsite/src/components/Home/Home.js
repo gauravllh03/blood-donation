@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import { Redirect } from "react-router";
 import Facts from "../Facts/Facts";
 import axios from 'axios';
+import FactsList from '../../assets/api/FactsList'
 class Home extends Component
 {
     state={
@@ -201,6 +202,7 @@ class Home extends Component
         {
             redirect=<Redirect to="/"/>;
         }
+        console.log(FactsList);
         return(
             <React.Fragment>
                 {redirect}
@@ -212,9 +214,8 @@ class Home extends Component
                         </form>
                         <Button btnType="Success" clicked={this.onPredict} >Submit</Button>
                     </div>
-                    <div className={classes.Facts}>
-                        <Facts/>
-                    </div>
+                    <div className={classes.Facts}><Facts myth={FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
+                    
                 </div>
             </React.Fragment>
         )

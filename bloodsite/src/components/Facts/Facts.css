@@ -13,8 +13,8 @@
      border: solid 1px #3498db;
      border-radius: 6px;
      line-height: 18px;
-     width:30%;
      margin:auto;
      overflow: hidden;
      padding: 15px 60px;
+     margin-bottom: 8px;
 }
