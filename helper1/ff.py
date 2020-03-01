@@ -23,10 +23,9 @@ y_train=df['Made Donation in March 2007']
 
 decision_tree  = svm.SVR()
 decision_tree = decision_tree.fit(x_train,y_train)
-#joblib.dump(decision_tree, 'classifier.joblib')
- 
+
  
 print(decision_tree.predict(df3))
-data3=[{'res':str(decision_tree.predict(df3))}]
+data3=[{'res':normal_round(decision_tree.predict(df3)[0])}]
 df4=pd.DataFrame(data3)
 df4.to_csv("res.csv", sep=',') 

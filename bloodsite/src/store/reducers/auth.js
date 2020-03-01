@@ -5,7 +5,15 @@ const initialState={
     userId:null,
     error:null,
     loading:false,
-    lives:1
+    lives:1,
+    money:{
+        'O+':10,
+        'O-':12,
+        'AB+':7,
+        'AB-':5,
+        'A':8,
+        'B':8
+    }
 };
 
 const reducer=(state=initialState,action)=>{

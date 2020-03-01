@@ -99,10 +99,57 @@ class Donate extends Component
                 valid:false,
                 touched:false
             },
+            yourblood:
+            {
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Enter your bloodgroup'
+                },
+                value:'',
+                validation:{
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
             
         }, 
+        curruser:0,
+        currusermoney:0,
+        net:null,
+        moneyneeds:0
     }
 
+
+    componentWillMount()
+    {
+        axios.get('https://bloodsite-87a36.firebaseio.com/donated.json')
+        .then(resp=>{
+            console.log(resp.data);
+            let fetchedBlood=[];
+            for(let key in resp.data)
+            {
+                fetchedBlood.push({...resp.data[key],id:key});
+            }
+            console.log(fetchedBlood);
+            let val=0;
+            for(let k in fetchedBlood)
+            {
+                if(fetchedBlood[k].uid == this.props.token)
+                {
+                    val+=parseInt(fetchedBlood[k].volume);
+                    console.log('true');
+                    console.log(val);
+                }
+            }
+            this.setState({curruser:val});
+
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
 
     inputChangedHandler=(event,controlName)=>{
         const updatedControls={
@@ -116,6 +163,22 @@ class Donate extends Component
         };
         this.setState({
             controls:updatedControls
+        });
+
+    }
+    inputChangedHandlering=(event,controlName)=>{
+        const updatedControls={
+            ...this.state.controls1,
+            [controlName]:{
+                ...this.state.controls1[controlName],
+                value:event.target.value,
+                valid:this.checkValidity(event.target.value,this.state.controls1[controlName].validation),
+                touched:true
+            }
+        };
+        
+        this.setState({
+            controls1:updatedControls
         });
 
     }
@@ -154,6 +217,25 @@ class Donate extends Component
             console.log(error);
         })
     }
+
+    buyBloodHandler=()=>{
+        let bg=this.state.controls1.bloodgroup.value;
+        let mybg=this.state.controls1.yourblood.value;
+        let amt=this.state.controls1.amount.value;
+        console.log(bg);
+        console.log(amt);
+        console.log(amt*this.props.money[bg]);
+        console.log(mybg);
+        let moneyhas=this.state.curruser*this.props.money[mybg];
+        let moneyneeds=parseInt(amt*this.props.money[bg]);
+        this.setState({currusermoney:moneyhas});
+        this.setState({moneyneeds:moneyneeds});
+        console.log('money:'+moneyhas);
+        console.log('money-needed:'+moneyneeds);
+        let f=moneyneeds-moneyhas;
+        this.setState({net:f});
+    }
+
     render()
     {
         const formElementsArray=[];
@@ -169,7 +251,7 @@ class Donate extends Component
         for(let key in this.state.controls1)
         {
             formElementsArray1.push({
-                id:key,
+                id1:key,
                 config:this.state.controls1[key]
             });
         }
@@ -186,15 +268,15 @@ class Donate extends Component
 
         ))
 
-        let form1=formElementsArray1.map(formElement=>(
-            <Input key={formElement.id}
-               elementType={formElement.config.elementType} 
-               elementConfig={formElement.config.elementConfig} 
-               value={formElement.config.value}
-               changed={(event)=>this.inputChangedHandler(event,formElement.id)}
-               invalid={!formElement.config.valid} 
-               shouldValidate={formElement.config.validation}
-               touched={formElement.config.touched} />
+        let form1=formElementsArray1.map(formElement1=>(
+            <Input key={formElement1.id1}
+               elementType={formElement1.config.elementType} 
+               elementConfig={formElement1.config.elementConfig} 
+               value={formElement1.config.value}
+               changed={(event)=>this.inputChangedHandlering(event,formElement1.id1)}
+               invalid={!formElement1.config.valid} 
+               shouldValidate={formElement1.config.validation}
+               touched={formElement1.config.touched} />
 
         ))
 
@@ -220,6 +302,7 @@ class Donate extends Component
                 <br></br>
                 <br></br>
                 <div className={classes.Donate}>
+                <p style={{color:"white"}}>Your total blood donation volume is {this.state.curruser}</p>
                 <p className={classes.pa}>BUY BLOOD?</p>
                 <form style={{margin:"10px"}} >
                     
@@ -231,6 +314,12 @@ class Donate extends Component
                 </div>
                 <br></br>
                 <br></br>
+
+                {this.state.net==null?null:
+                <div className={classes.Net}>
+                <p>Your total cost is {this.state.moneyneeds} <br></br>{this.state.net<0?"You have adequate currency .Contact us and buy blood":"Your currency is less. Pay money or donate blood to earn enough currency"}</p>
+            </div>}
+                <br></br>
             </React.Fragment>
             
         )
@@ -239,7 +328,9 @@ class Donate extends Component
 const mapStateToProps=state=>{
     return{
         isAuthenticated:state.token!==null,
-        token:state.token
+        token:state.token,
+        money:state.money
+
     };
 }
 export default connect(mapStateToProps)(Donate);

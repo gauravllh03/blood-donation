@@ -3,11 +3,10 @@ from flask import request, jsonify
 import os
 import pandas as pd
 
-from flask_cors import CORS, cross_origin
+
 
 app = flask.Flask(__name__)
-cors = CORS(app)
-
+app.config["DEBUG"] = True
 
 
 
@@ -25,7 +24,7 @@ def pred():
     df=pd.read_csv("res.csv")
     #df=df['res']
     
-    jsons=[{'res':int(df['res'].iloc[0])}]
+    jsons=[{'res':(df['res'].iloc[0])}]
   
     return jsonify(jsons)
 
