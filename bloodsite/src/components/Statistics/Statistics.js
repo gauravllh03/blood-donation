@@ -9,6 +9,8 @@ class Statistics extends Component
     state={
         data:null,
         currCurrency:0,
+        currVol:0,
+        currBlood:0,
         stat:{
             "O+":0,
             "O-":0,
@@ -30,15 +32,18 @@ class Statistics extends Component
             }
             console.log(fetchedBlood);
             let val=0;
+            let bg=null;
             for(let k in fetchedBlood)
             {
                 if(fetchedBlood[k].uid == this.props.token)
                 {
                     val+=parseInt(fetchedBlood[k].volume);
+                    bg=fetchedBlood[k].bloodgroup;
                     console.log('true');
                 }
             }
-
+            let currency=0;
+            currency=val*this.props.money[bg];
             let blood={
                 "O+":0,
                 "O-":0,
@@ -85,7 +90,9 @@ class Statistics extends Component
             console.log(blood);
             //console.log((this.props.token));
             console.log(val);
-            this.setState({currCurrency:val})
+            this.setState({currCurrency:currency});
+            this.setState({currVol:val});
+            this.setState({currBlood:bg});
             //console.log((fetchedBlood[0].uid));
             this.setState({data:fetchedBlood});
             
@@ -137,20 +144,37 @@ class Statistics extends Component
                     />
                 </div>
                 <div className={classes.foom}>
-                    <div className={classes.foo} style={{background:"#f00"}}></div>
-                    <div className={classes.text}>O- {this.state.stat["O-"]}</div>
-                    <div className={classes.foo} style={{background:"#0B6623"}}></div>
-                    <div className={classes.text}>O+ {this.state.stat["O+"]}</div>
-                    <div className={classes.foo} style={{background:"#ffd500"}}></div>
-                    <div className={classes.text} >AB+ {this.state.stat["AB+"]}</div>
-                    <div className={classes.foo} style={{background:"#3c00ff"}}></div>
-                    <div className={classes.text}>AB- {this.state.stat["AB-"]}</div>
-                    <div className={classes.foo} style={{background:"#cc00ff"}}></div>
-                    <div className={classes.text}>A {this.state.stat["A"]}</div>
-                    <div className={classes.foo} style={{background:"#50C878"}}></div>
-                    <div className={classes.text}>B {this.state.stat["B"]}</div>
+                    <div className={classes.sep}>
+                        <div className={classes.foo} style={{background:"#f00"}}></div>
+                        <div className={classes.text}>O- {this.state.stat["O-"]}</div>
+                    </div>
+                    <div className={classes.sep}>
+                        <div className={classes.foo} style={{background:"#0B6623"}}></div>
+                        <div className={classes.text}>O+ {this.state.stat["O+"]}</div>
+                    </div>
+
+                    <div className={classes.sep}>
+                        <div className={classes.foo} style={{background:"#ffd500"}}></div>
+                        <div className={classes.text} >AB+ {this.state.stat["AB+"]}</div>
+                    </div>
+                    <div className={classes.sep}>
+                        <div className={classes.foo} style={{background:"#3c00ff"}}></div>
+                        <div className={classes.text}>AB- {this.state.stat["AB-"]}</div>
+                    </div>
+                    <div className={classes.sep}>
+                        <div className={classes.foo} style={{background:"#cc00ff"}}></div>
+                        <div className={classes.text}>A {this.state.stat["A"]}</div>
+                    </div>
+                    <div className={classes.sep}>
+                        <div className={classes.foo} style={{background:"#50C878"}}></div>
+                        <div className={classes.text}>B {this.state.stat["B"]}</div>
+                    </div>
                 </div>
-                <p className={classes.curr}>Your Available currency : {this.state.currCurrency}</p>
+                <div className={classes.Data}>
+                    <p className={classes.curr}>Your Blood Group : {this.state.currBlood}</p>
+                    <p className={classes.curr}>Your Donated Volume : {this.state.currVol}</p>
+                    <p className={classes.curr}>Your Available currency : {this.state.currCurrency}</p>
+                </div>
             </React.Fragment>
         )
     }
@@ -159,7 +183,8 @@ class Statistics extends Component
 const mapStateToProps=state=>{
     return{
         isAuthenticated:state.token!==null,
-        token:state.token
+        token:state.token,
+        money:state.money
     };
 }
 export default connect(mapStateToProps)(Statistics);

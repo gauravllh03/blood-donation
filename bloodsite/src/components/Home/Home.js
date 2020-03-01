@@ -214,7 +214,10 @@ class Home extends Component
                         </form>
                         <Button btnType="Success" clicked={this.onPredict} >Submit</Button>
                     </div>
-                    <div className={classes.Facts}><Facts myth={FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
+                    <div className={classes.Facts}>
+                        <div ><Facts myth={FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
+                        <iframe src="https://testa441.000webhostapp.com/" width="400px" height="400px"></iframe>
+                    </div>
                     
                 </div>
             </React.Fragment>
