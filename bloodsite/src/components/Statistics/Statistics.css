@@ -6,7 +6,7 @@
     text-align: center;
 }
 .foo {
-    margin: px 12px;
+    margin: 8px 12px;
     width: 20px;
     height: 20px;
     border: 1px solid rgba(0, 0, 0, .2);
