@@ -10,6 +10,8 @@ import FactsList from '../../assets/api/FactsList'
 class Home extends Component
 {
     state={
+        donor:null,
+        nonDonor:null,
         controls:{
             name:
             {
@@ -168,6 +170,12 @@ class Home extends Component
         .then(response => {
             console.log(response.data);
       });
+      let x=parseInt(Math.round(Math.random()));
+      if(x==0)
+        this.setState({nonDonor:1});
+      else
+        this.setState({donor:1});
+
     }
 
     render()
@@ -193,9 +201,16 @@ class Home extends Component
                touched={formElement.config.touched} />
 
         ))
+        let red=null;
+        if(this.state.nonDonor)
+        {
+            red=<Redirect to="/facts"/>;
+        }
 
-
-
+        if(this.state.donor)
+        {
+            red=<Redirect to="/donate"/>;
+        }
 
         let redirect=null;
         if(!this.props.isAuthenticated)
@@ -206,6 +221,7 @@ class Home extends Component
         return(
             <React.Fragment>
                 {redirect}
+                {red}
                 <p className={classes.para}>Please Fill the survey</p>
                 <div>
                     <div className={classes.Home}>
@@ -215,8 +231,8 @@ class Home extends Component
                         <Button btnType="Success" clicked={this.onPredict} >Submit</Button>
                     </div>
                     <div className={classes.Facts}>
-                        <div ><Facts myth={FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
-                        <iframe src="https://testa441.000webhostapp.com/" width="400px" height="400px"></iframe>
+                        <div ><Facts  fact={FactsList[0].Fact}/></div>
+                        <iframe src="https://testa441.000webhostapp.com/" className={classes.Map}></iframe>
                     </div>
                     
                 </div>

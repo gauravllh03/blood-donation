@@ -290,6 +290,8 @@ class Donate extends Component
             <React.Fragment>
                 {redirect}
                 <p className={classes.para}> Donate blood friends</p>
+                <br></br>
+                <div className={classes.Anchor}><a href="https://testa441.000webhostapp.com/" style={{textDecoration:"none",color:"white"}}>Find Blood Banks</a></div>
                 <div className={classes.Donate}>
                 <p className={classes.pa}>DONATED BLOOD?</p>
                 <form style={{margin:"10px"}}>

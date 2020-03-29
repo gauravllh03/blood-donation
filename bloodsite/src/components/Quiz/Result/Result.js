@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Result.css';
+import {Redirect} from 'react-router'; 
 import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Button from '../../UI/Button/Button'
@@ -7,6 +8,11 @@ function Result(props) {
   console.log(props.answerOptions);
   const correctPer=(props.answerOptions["Correct"]?props.answerOptions["Correct"]:0)/5*100;
   const incorrectPer=(props.answerOptions["Incorrect"]?props.answerOptions["Incorrect"]:0)/5*100;
+
+  const donateBlood=()=>{
+      <Redirect to="/donate"/>
+  }
+
   return (
     <div className={classes.result}>
       <div className={classes.per}>
@@ -61,7 +67,7 @@ function Result(props) {
           background="true"  value={incorrectPer} text={`${incorrectPer}%`}></CircularProgressbar></div> 
       </div>
       <div className={classes.getLives}>
-      <Button>Get Lives!!!</Button>
+      <Button clicked={donateBlood()}>Get Lives!!!</Button>
       </div>
       
       </div>

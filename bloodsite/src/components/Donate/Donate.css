@@ -33,6 +33,17 @@
     color:white;
 
 }
+.Anchor
+    {
+        background-color: rgb(255,114,111,0.7);
+        border:2px solid red;
+        font-family: lobster;
+        font-size: 18px;
+        margin: auto;
+        width:fit-content;
+        padding: 10px;
+        margin-bottom: 25px !important;
+    }
 
 @media(min-width:600px)
 {
@@ -44,4 +55,14 @@
         width:50%;
         padding: 50px;
     }
+
+    .Anchor
+    {
+        border:2px solid red;
+        margin: auto;
+        width:fit-content;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
 }

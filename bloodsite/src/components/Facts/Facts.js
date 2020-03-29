@@ -7,8 +7,8 @@ class Facts extends Component
         console.log(this.props.myth);
         return(
             <div className={classes.Facts}>
-                <p style={{fontFamily:'Lobster'}}>Myth : {this.props.myth}</p>
-                <p style={{fontFamily:'Acme'}}>Fact : {this.props.fact}</p>
+                <p style={{fontFamily:'Lobster', fontSize:"20px"}}>Myth : {this.props.myth}</p>
+                <p style={{fontFamily:'Acme', fontSize:"20px"}}>Fact : {this.props.fact}</p>
             </div>
         );
     }
