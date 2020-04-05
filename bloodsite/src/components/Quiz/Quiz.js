@@ -6,6 +6,7 @@ import quizQuestions from '../../assets/api/QuestionList';
 import QuestionPage from './QuestionPage/QuestionPage';
 import Result from './Result/Result';
 import * as actions from '../../store/actions/index'
+import axios from 'axios'
 
 class Quiz extends Component
 {
@@ -13,7 +14,7 @@ class Quiz extends Component
         super(props);
       
         this.state = {
-          lives:3,
+          lives:null,
           counter: 0,
           questionId: 1,
           question: '',
@@ -28,7 +29,7 @@ class Quiz extends Component
     }
     handleSubmit () {
         const templateId = 'template_j1qCyvOQ';
-        this.sendFeedback(templateId, {reply_to: this.state.email, to_name:this.state.email});
+        //this.sendFeedback(templateId, {reply_to: this.state.email, to_name:this.state.email});
     }
 
     sendFeedback (templateId, variables) {
@@ -41,10 +42,24 @@ class Quiz extends Component
         // Handle errors here however you like, or use a React error boundary
         .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))
     }
-    componentDidMount() {
+    async componentDidMount() {
         const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));  
-      
+        let lives= 3
+        let userId= localStorage.getItem('userId')
+        let url='https://bloodsite-87a36.firebaseio.com/lives/'+userId+'.json';
+        await axios.get(url)
+        .then(response=>{
+            lives= response.data.lives
+            if(lives<=0){
+                this.setResults(this.getResults())
+            }
+            console.log(lives);
+        })
+        .catch(error=>{
+            console.log(error)
+        })
         this.setState({
+          lives:lives,
           question: quizQuestions[0].question,
           answerOptions: shuffledAnswerOptions[0]
         });
@@ -67,10 +82,26 @@ class Quiz extends Component
       
         return array;
     };
+
+    deductLives(lives){
+        let userId= localStorage.getItem('userId')
+        let obj = {lives:lives}
+        let url='https://bloodsite-87a36.firebaseio.com/lives/'+userId+'.json';
+        axios.put(url,obj)
+        .then(response=>{
+            console.log(response.data);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+
     setUserAnswer(answer) {
         var lives=this.state.lives;
-        if(answer==="Incorrect")
-            lives-=1;
+        if(answer==="Incorrect"){
+            lives=lives===0?lives:lives-1;
+            this.deductLives(lives)
+        }
         this.setState((state) => ({
           answersCount: {
             ...state.answersCount,
@@ -85,7 +116,7 @@ class Quiz extends Component
     handleAnswerSelected(event) {
         console.log(this.state.lives);
         this.setUserAnswer(event.currentTarget.value);
-        if (this.state.questionId < quizQuestions.length && this.state.lives!==0) {
+        if (this.state.questionId < quizQuestions.length && this.state.lives>0) {
             setTimeout(() => this.setNextQuestion(), 300);
           } else {
             setTimeout(() => this.setResults(this.getResults()), 300);
@@ -107,7 +138,6 @@ class Quiz extends Component
         const answersCountKeys = Object.keys(answersCount);
         const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
         const maxAnswerCount = Math.max.apply(null, answersCountValues);
-      
         return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
     }
     setResults (result) {
@@ -136,6 +166,7 @@ class Quiz extends Component
                 <Result
                     quizResult={this.state.result}
                     answerOptions={this.state.answersCount}
+                    lives={this.state.lives}
                 ></Result>
         );
     }
@@ -156,15 +187,8 @@ class Quiz extends Component
 
 const mapStateToProps=state=>{
     return{
-        isAuthenticated:state.token!==null,
-        lives:state.lives
+        isAuthenticated:state.token!==null
     };
 }
 
-const mapDispatchToProps=dispatch=>{
-    return{
-        onSub:(lives)=>dispatch(actions.subtract(lives))
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Quiz);
+export default connect(mapStateToProps,null)(Quiz);

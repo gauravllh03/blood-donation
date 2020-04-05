@@ -12,6 +12,9 @@ function Result(props) {
   const donateBlood=()=>{
       <Redirect to="/donate"/>
   }
+  let winEmail = null
+  if(props.quizResult==='Correct')
+    winEmail=<p>Check your email for your surprise</p>
 
   return (
     <div className={classes.result}>
@@ -67,9 +70,10 @@ function Result(props) {
           background="true"  value={incorrectPer} text={`${incorrectPer}%`}></CircularProgressbar></div> 
       </div>
       <div className={classes.getLives}>
-      <Button clicked={donateBlood()}>Get Lives!!!</Button>
+        <p>Your remaining lives: {props.lives}</p>
+        <Button clicked={donateBlood()}>Get Lives!!!</Button>
       </div>
-      
+        {winEmail}
       </div>
       
       
