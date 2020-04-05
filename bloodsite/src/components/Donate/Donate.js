@@ -136,7 +136,7 @@ class Donate extends Component
             let val=0;
             for(let k in fetchedBlood)
             {
-                if(fetchedBlood[k].uid == this.props.token)
+                if(fetchedBlood[k].email == localStorage.getItem("email"))
                 {
                     val+=parseInt(fetchedBlood[k].volume);
                     console.log('true');
@@ -206,7 +206,8 @@ class Donate extends Component
             "bloodgroup":this.state.controls.bloodgroup.value,
             "volume":this.state.controls.amount.value,
             "token":this.state.controls.token.value,
-            "uid":this.props.token
+            "uid":this.props.token,
+            "email":localStorage.getItem("email")
         };
         let url='https://bloodsite-87a36.firebaseio.com/donated.json';
         axios.post(url,obj)

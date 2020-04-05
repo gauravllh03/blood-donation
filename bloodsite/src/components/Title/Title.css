@@ -1,0 +1,25 @@
+/* .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color:red;
+    font-weight: bold;
+    background: linear-gradient(to right,white,skyblue);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+} */
+
+
+.Title {
+    background-color:#262626;
+    overflow: visible;
+    padding:10px 5px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin:auto;
+  }

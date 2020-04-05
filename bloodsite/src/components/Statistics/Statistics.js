@@ -35,7 +35,7 @@ class Statistics extends Component
             let bg=null;
             for(let k in fetchedBlood)
             {
-                if(fetchedBlood[k].uid == this.props.token)
+                if(fetchedBlood[k].email == localStorage.getItem("email"))
                 {
                     val+=parseInt(fetchedBlood[k].volume);
                     bg=fetchedBlood[k].bloodgroup;

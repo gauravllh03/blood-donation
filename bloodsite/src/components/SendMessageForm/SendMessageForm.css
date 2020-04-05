@@ -1,0 +1,61 @@
+/* .sendMessageForm {
+    background:#ccc;
+    display: flex;
+    box-sizing: border-box;
+    height: 50px;
+}
+
+.sendMessageForm input {
+    width: 100%;
+    padding:0px 10px;
+    border: none;
+    font-size: 16px;
+
+    margin: 0;
+    background: #eee;
+    font-weight:540;
+}
+
+.sendMessageForm input:focus {
+    outline-width: 0;
+}
+
+.sendMessageForm input::placeholder {
+    color: black;
+} */
+
+.Form {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+  
+  .Input {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    width:100%;
+  }
+  
+  .Button {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-left: 10px;
+  }
+
+  @media(max-width:500px)
+  {
+      .Input{
+            width:70%;
+            margin-left:10px;
+      }
+      .Button {
+        margin-right:10px;
+      }
+  }

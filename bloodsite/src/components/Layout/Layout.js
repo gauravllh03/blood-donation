@@ -29,7 +29,7 @@ class Layout extends Component
         <React.Fragment>
                  <Snowfall
                         color="red"
-                        snowflakeCount={300}
+                        snowflakeCount={100}
                 /> 
                 
             <Toolbar isAuth={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler}/>

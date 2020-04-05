@@ -1,0 +1,97 @@
+/*.messageList {
+    box-sizing: border-box;
+    padding: 0 0 0 6px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    background: white;
+}
+
+.message {
+    margin: 15px 0;
+}
+
+.message div:nth-child(1) {
+    font-size: 12px;
+    font-weight: 540;
+    color:black;
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+.message div:nth-child(2) {
+    background:navy;
+    color: white;
+    display: inline;
+    padding: 4px 8px;
+    border-radius: 8px;
+}*/
+.MessagesList {
+    padding: 20px 0;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    list-style: none;
+    padding-left: 0;
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  .MessagesMessage {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .MessagesMessage.currentMember {
+    /*justify-content: flex-end;*/
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+  
+  .MessageContent {
+    display: inline-block;
+  }
+  
+  .currentMember > .MessageContent {
+    align-items: flex-end;
+  }
+  
+  .MessagesMessage > .avatar {
+    font-size: 15px;
+    width: 2em;
+    height: 2em;
+    box-sizing: initial;
+    padding: 2px;
+    margin:5px;
+    background: #ccc;
+    border: 3px solid navy;
+    color: cornflowerblue;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;    
+
+    line-height: 2em;
+    box-sizing: content-box;  
+  }
+  
+  .MessageContent > .username {
+    display: block;
+    color: gray;
+    font-size: 14px;
+    padding-bottom: 4px;
+  }
+  
+  .MessageContent .text {
+    padding: 10px;
+    max-width: 400px;
+    margin: 0;
+    border-radius: 12px;
+    background-color: cornflowerblue;
+    color: white;
+    display: inline-block;
+  }
+  
+  .currentMember > .MessageContent .text {
+    background-color:cornflowerblue;
+  }
+  
