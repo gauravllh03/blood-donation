@@ -22,23 +22,26 @@ class MessageList extends React.Component {
     renderMessage(message) {
         const {member, text} = message;
         const {currentMember} = this.props;
-        console.log(member.username);
-        console.log(currentMember.username);
         const messageFromMe = member.username === currentMember.username;
         // const xyz = messageFromMe ?
         //   "MessagesMessage currentMember" : "MessagesMessage";
+        if(member.username==="gaurav.llh03" || member.username==="enigma.shroff" || member.username==="sandsourabh98")
+        {
+            member.username="ADMIN";
+        }
         let xyz=[classes.MessagesMessage];
         let x="red";
         let y="O";
         if(messageFromMe)
         {
-            console.log("YES");
+            //console.log("YES");
             x="yellow";
             y="C";
             xyz.push(classes.currentMember);
         }
+        let rand=Math.floor(Math.random() * 10000);
         return (
-          <li className={xyz.join(' ')}>
+          <li className={xyz.join(' ')} key={rand}>
             <span
               className={classes.avatar}
             >{y}</span>

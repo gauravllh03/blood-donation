@@ -60,7 +60,7 @@ class SendMessageForm extends Component {
             value={this.state.text}
             type="text"
             placeholder="Enter your message"
-            autofocus="true"
+            
           />
           <button className={classes.Button}>Send</button>
         </form>
