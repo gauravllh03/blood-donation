@@ -12,12 +12,13 @@ function Result(props) {
   const donateBlood=()=>{
       <Redirect to="/donate"/>
   }
-  let winEmail = null
+  let winEmail = (<div className={classes.getLives}>
+                    <p>Your remaining lives: {props.lives}</p>
+                    <Button clicked={donateBlood()}>Get Lives!!!</Button>
+                  </div>)
   if(props.quizResult==='Correct')
-    winEmail=<p>Check your email for your surprise</p>
-
-  return (
-    <div className={classes.result}>
+    winEmail=(
+      <div className={classes.result}>
       <div className={classes.per}>
         <div className={classes.correctPer}>
         Correct Answers <CircularProgressbar 
@@ -43,7 +44,8 @@ function Result(props) {
             trailColor: '#d6d6d6',
             backgroundColor: 'salmon',
           })}
-          background="true" value={correctPer} text={`${correctPer}%`} /></div>
+          background="true" value={correctPer} text={`${correctPer}%`} />
+          </div>
         <div className={classes.incorrectPer}>Incorrect Answers <CircularProgressbar 
           styles={buildStyles({
             // Rotation of path and trail, in number of turns (0-1)
@@ -68,11 +70,15 @@ function Result(props) {
             backgroundColor: 'salmon',
           })}
           background="true"  value={incorrectPer} text={`${incorrectPer}%`}></CircularProgressbar></div> 
-      </div>
-      <div className={classes.getLives}>
-        <p>Your remaining lives: {props.lives}</p>
-        <Button clicked={donateBlood()}>Get Lives!!!</Button>
-      </div>
+          <br/>
+          <p>Check your email for your surprise</p>
+          </div>
+          </div>
+    )
+
+  return (
+    
+      <div>
         {winEmail}
       </div>
       

@@ -201,6 +201,7 @@ class Donate extends Component
         return isValid;
     }
     donateBloodHandler=()=>{
+        let userId= localStorage.getItem('userId')
         let obj={
             "name":this.state.controls.name.value,
             "bloodgroup":this.state.controls.bloodgroup.value,
@@ -211,6 +212,15 @@ class Donate extends Component
         };
         let url='https://bloodsite-87a36.firebaseio.com/donated.json';
         axios.post(url,obj)
+        .then(response=>{
+            console.log(response.data);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+        obj = {lives:3}
+        url='https://bloodsite-87a36.firebaseio.com/lives/'+userId+'.json';
+        axios.put(url,obj)
         .then(response=>{
             console.log(response.data);
         })

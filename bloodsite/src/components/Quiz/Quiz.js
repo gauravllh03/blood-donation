@@ -5,7 +5,6 @@ import { Redirect } from "react-router";
 import quizQuestions from '../../assets/api/QuestionList';
 import QuestionPage from './QuestionPage/QuestionPage';
 import Result from './Result/Result';
-import * as actions from '../../store/actions/index'
 import axios from 'axios'
 
 class Quiz extends Component
@@ -23,12 +22,14 @@ class Quiz extends Component
           answersCount: {},
           result: '',
           email:localStorage.getItem('email'),
+          timer:10
         };
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.timerEnds=this.timerEnds.bind(this)
     }
     handleSubmit () {
-        const templateId = 'template_j1qCyvOQ';
+        // const templateId = 'template_j1qCyvOQ';
         //this.sendFeedback(templateId, {reply_to: this.state.email, to_name:this.state.email});
     }
 
@@ -99,7 +100,7 @@ class Quiz extends Component
     setUserAnswer(answer) {
         var lives=this.state.lives;
         if(answer==="Incorrect"){
-            lives=lives===0?lives:lives-1;
+            lives=lives<=0?0:lives-1;
             this.deductLives(lives)
         }
         this.setState((state) => ({
@@ -109,19 +110,25 @@ class Quiz extends Component
           },
           answer: answer,
           lives:lives,
+          timer:10
         }));
         
         
     }
-    handleAnswerSelected(event) {
+    async handleAnswerSelected(event) {
         console.log(this.state.lives);
-        this.setUserAnswer(event.currentTarget.value);
-        if (this.state.questionId < quizQuestions.length && this.state.lives>0) {
-            setTimeout(() => this.setNextQuestion(), 300);
-          } else {
-            setTimeout(() => this.setResults(this.getResults()), 300);
-          }
+        await this.nextStep(event.currentTarget.value);
     }
+    async nextStep(answer) {
+        await this.setUserAnswer(answer);
+        if (this.state.questionId < quizQuestions.length && this.state.lives > 0) {
+            setTimeout(() => this.setNextQuestion(), 300);
+        }
+        else {
+            setTimeout(() => this.setResults(this.getResults()), 300);
+        }
+    }
+
     setNextQuestion() {
         const counter = this.state.counter + 1;
         const questionId = this.state.questionId + 1;
@@ -130,7 +137,8 @@ class Quiz extends Component
           questionId: questionId,
           question: quizQuestions[counter].question,
           answerOptions: quizQuestions[counter].answers,
-          answer: ''
+          answer: '',
+          timer:10
         });
     }
     getResults() {
@@ -148,9 +156,16 @@ class Quiz extends Component
           this.setState({ result: 'Undetermined' });
         }
     }
+
+    timerEnds(){
+        console.log('here')
+        this.nextStep('Incorrect')
+        console.log('done')
+    }
     renderQuiz(){
         return (
                 <QuestionPage
+                    timer={this.state.timer}
                     lives={this.state.lives}
                     answer={this.state.answer}
                     answerOptions={this.state.answerOptions}
@@ -158,6 +173,7 @@ class Quiz extends Component
                     question={this.state.question}
                     questionTotal={quizQuestions.length}
                     onAnswerSelected={this.handleAnswerSelected}
+                    onTimerEnds={this.timerEnds}
                 />
         );
     }
