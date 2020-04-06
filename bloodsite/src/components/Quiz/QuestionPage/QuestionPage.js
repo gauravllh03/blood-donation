@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Question from './Question/Question'
 import QuestionCount from './QuestionCount/QuestionCount'
 import AnswerOption from './AnswerOption/AnswerOption'
 import classes from './QuestionPage.css'
 
 const questionPage = (props) =>{
+
+    const [timer,setTimer] = useState()
+
+    useEffect(()=>{
+      setTimer(props.timer)
+    },[props.timer])
+
+    useEffect(() => {
+      timer > 0 &&  setTimeout(() => {
+        setTimer(timer - 1)
+      }, 1000);
+      if(timer===0){
+        props.onTimerEnds()
+        setTimeout(()=>{
+         setTimer(props.timer)
+        },500)
+      }
+    }, [timer]);
+
+    useEffect(()=>{
+      return ()=>{
+        clearTimeout()
+      }
+    },[])
+
     function renderAnswerOptions(key) {
         return (
           <AnswerOption
@@ -28,8 +53,8 @@ const questionPage = (props) =>{
               className={classes.questionCount}
               counter={props.questionId}
               total={props.questionTotal}
-              
             />
+            <p>{timer}</p>
             <div className={classes.hearts}>{hearts}</div>
           </span>
           <Question content={props.question} />
