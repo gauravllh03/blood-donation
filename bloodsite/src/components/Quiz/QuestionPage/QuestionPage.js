@@ -3,26 +3,31 @@ import Question from './Question/Question'
 import QuestionCount from './QuestionCount/QuestionCount'
 import AnswerOption from './AnswerOption/AnswerOption'
 import classes from './QuestionPage.css'
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 const questionPage = (props) =>{
+    //const [timer,setTimer] = useState()
 
-    const [timer,setTimer] = useState()
+    // useEffect(()=>{
+    //   setTimer(props.timer)
+    //   console.log("Component updated");
+    // },[props.timer])
 
-    useEffect(()=>{
-      setTimer(props.timer)
-    },[props.timer])
+    
 
     useEffect(() => {
-      timer > 0 &&  setTimeout(() => {
-        setTimer(timer - 1)
+      props.timer>0 && setTimeout(() => {
+          props.onReduceTimer(props.timer);
       }, 1000);
-      if(timer===0){
+
+      if(props.timer===0){
         props.onTimerEnds()
-        setTimeout(()=>{
-         setTimer(props.timer)
-        },500)
+        console.log("Timer ends");
+        props.onUpdateTimer(props.timer);
+        console.log(props.timer);
       }
-    }, [timer]);
+    }, [props.timer]);
 
     useEffect(()=>{
       return ()=>{
@@ -45,7 +50,6 @@ const questionPage = (props) =>{
     var hearts=[];
     for(let i=0;i<props.lives;i++)
       hearts.push(<i className="fa fa-heart" key={i} style={{color:"red",padding:"5px"}}></i>);
-
     return (
         <div className={classes.quiz}>
           <span className={classes.header}>
@@ -54,7 +58,7 @@ const questionPage = (props) =>{
               counter={props.questionId}
               total={props.questionTotal}
             />
-            <p>{timer}</p>
+            <p>{props.timer}</p>
             <div className={classes.hearts}>{hearts}</div>
           </span>
           <Question content={props.question} />
@@ -64,4 +68,19 @@ const questionPage = (props) =>{
         </div>
     );
 }
-export default questionPage;
+
+const mapStateToProps=(state)=>{
+  return{
+      timer:state.timer
+    }
+}
+const mapDispatchToProps=dispatch=>{
+  return{
+      onUpdateTimer:(time)=>dispatch(actions.update(time)),
+      onReduceTimer:(time)=>dispatch(actions.subtractTime(time)),
+      
+  };
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(questionPage);

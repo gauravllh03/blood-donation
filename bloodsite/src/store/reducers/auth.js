@@ -13,7 +13,8 @@ const initialState={
         'AB-':5,
         'A':8,
         'B':8
-    }
+    },
+    timer:10
 };
 
 const reducer=(state=initialState,action)=>{
@@ -52,6 +53,17 @@ const reducer=(state=initialState,action)=>{
             return{
                 ...state,
                 lives:action.lives
+            }
+
+        case actionTypes.UPDATE_TIME:
+            return{
+                ...state,
+                timer:action.timer+10
+            }
+        case actionTypes.SUBTRACT_TIME:
+            return{
+                ...state,
+                timer:action.timer
             }
             /*
         case actionTypes.SET_AUTH_REDIRECT_PATH:

@@ -5,7 +5,8 @@ import { Redirect } from "react-router";
 import quizQuestions from '../../assets/api/QuestionList';
 import QuestionPage from './QuestionPage/QuestionPage';
 import Result from './Result/Result';
-import axios from 'axios'
+import axios from 'axios';
+import * as actions from '../../store/actions/index';
 
 class Quiz extends Component
 {
@@ -22,7 +23,7 @@ class Quiz extends Component
           answersCount: {},
           result: '',
           email:localStorage.getItem('email'),
-          timer:10
+        //   timer:10
         };
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -103,6 +104,7 @@ class Quiz extends Component
             lives=lives<=0?0:lives-1;
             this.deductLives(lives)
         }
+        ()=>this.onUpdateTimer(this.props.timer);
         this.setState((state) => ({
           answersCount: {
             ...state.answersCount,
@@ -110,7 +112,7 @@ class Quiz extends Component
           },
           answer: answer,
           lives:lives,
-          timer:10
+        //   timer:10
         }));
         
         
@@ -132,14 +134,18 @@ class Quiz extends Component
     setNextQuestion() {
         const counter = this.state.counter + 1;
         const questionId = this.state.questionId + 1;
+        
         this.setState({
           counter: counter,
           questionId: questionId,
           question: quizQuestions[counter].question,
           answerOptions: quizQuestions[counter].answers,
           answer: '',
-          timer:10
+        //   timer:10
         });
+        ()=>this.onUpdateTimer(this.props.timer);
+        console.log("New question");
+        console.log(this.props.timer);
     }
     getResults() {
         const answersCount = this.state.answersCount;
@@ -165,7 +171,6 @@ class Quiz extends Component
     renderQuiz(){
         return (
                 <QuestionPage
-                    timer={this.state.timer}
                     lives={this.state.lives}
                     answer={this.state.answer}
                     answerOptions={this.state.answerOptions}
@@ -203,8 +208,16 @@ class Quiz extends Component
 
 const mapStateToProps=state=>{
     return{
-        isAuthenticated:state.token!==null
+        isAuthenticated:state.token!==null,
+        timer:state.timer
     };
 }
+const mapDispatchToProps=dispatch=>{
+    return{
+        onUpdateTimer:(time)=>dispatch(actions.update(time)),
+        onReduceTimer:(time)=>dispatch(actions.subtractTime(time)),
+        
+    };
+  }
 
-export default connect(mapStateToProps,null)(Quiz);
+export default connect(mapStateToProps,mapDispatchToProps)(Quiz);

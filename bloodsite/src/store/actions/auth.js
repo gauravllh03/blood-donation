@@ -46,6 +46,19 @@ export const subtract=(lives)=>{
     }
 }
 
+export const update=(time)=>{
+    return{
+        type:actionTypes.UPDATE_TIME,
+        timer:time*0
+    }
+}
+export const subtractTime=(time)=>{
+    return{
+        type:actionTypes.SUBTRACT_TIME,
+        timer:time-1
+    }
+}
+
 export const auth=(email,password,isSignUp)=>{
     return dispatch=>{
         dispatch(authStart());

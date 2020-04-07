@@ -1,1 +1,1 @@
-export {auth,logout,checkAuthState,subtract} from './auth';
+export {auth,logout,checkAuthState,subtract,update,subtractTime} from './auth';
