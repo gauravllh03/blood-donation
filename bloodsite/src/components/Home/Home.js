@@ -7,6 +7,8 @@ import { Redirect } from "react-router";
 import Facts from "../Facts/Facts";
 import axios from 'axios';
 import FactsList from '../../assets/api/FactsList'
+import Slider from './Slider/Slider'
+
 class Home extends Component
 {
     state={
@@ -221,6 +223,7 @@ class Home extends Component
         return(
             <React.Fragment>
                 {redirect}
+		<Slider />
                 {red}
                 <p className={classes.para}>Please Fill the survey</p>
                 <div>

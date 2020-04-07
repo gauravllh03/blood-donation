@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import { Redirect } from "react-router";
 import PieChart from 'react-simple-pie-chart';
 import axios from 'axios';
+import Spinner from '../UI/Spinner/Spinner'
+import Gridview from './Gridview/Gridview'
+import Modal from '../UI/Modal/Modal'
+
 class Statistics extends Component
 {
     state={
@@ -18,10 +22,13 @@ class Statistics extends Component
             "AB-":0,
             "A":0,
             "B":0
-        }
+        },
+        loading: true,
+        totalBlood:0
     }
     componentWillMount()
     {
+        let totalBlood=0;
         axios.get('https://bloodsite-87a36.firebaseio.com/donated.json')
         .then(resp=>{
             console.log(resp.data);
@@ -29,13 +36,15 @@ class Statistics extends Component
             for(let key in resp.data)
             {
                 fetchedBlood.push({...resp.data[key],id:key});
+                totalBlood= totalBlood + +resp.data[key].volume;
             }
             console.log(fetchedBlood);
+            console.log("total blood= ",totalBlood)
             let val=0;
             let bg=null;
             for(let k in fetchedBlood)
             {
-                if(fetchedBlood[k].email == localStorage.getItem("email"))
+                if(fetchedBlood[k].uid == this.props.token)
                 {
                     val+=parseInt(fetchedBlood[k].volume);
                     bg=fetchedBlood[k].bloodgroup;
@@ -95,12 +104,17 @@ class Statistics extends Component
             this.setState({currBlood:bg});
             //console.log((fetchedBlood[0].uid));
             this.setState({data:fetchedBlood});
-            
+            this.setState({loading: false})
+            this.setState({totalBlood: totalBlood})
+            console.log("state blood", this.state.totalBlood)
         })
         .catch(error=>{
             console.log(error);
         })
+        
     }
+
+    
     render()
     {
         let redirect=null;
@@ -108,12 +122,11 @@ class Statistics extends Component
         {
             redirect=<Redirect to="/"/>;
         }
-        return(
-            <React.Fragment>
-                {redirect}
-                <p className={classes.para}>Statistics work friends</p>
-                <div style={{width:"200px",height:"200px",margin:"auto",opacity:"0.7"}}>
-                    <PieChart
+
+        let chart= <Spinner />;
+        if(!this.state.loading) {
+            chart = (
+                <PieChart
                         slices={[
                             {
                             color: '#f00',
@@ -142,6 +155,17 @@ class Statistics extends Component
 
                         ]}
                     />
+            );
+
+            
+        }
+
+        return(
+            <React.Fragment>
+                {redirect}
+                <p className={classes.para}>Statistics work friends</p>
+                <div className={classes.chartbox} style={{width:"200px",height:"200px",margin:"auto",opacity:"0.7"}}>
+                    {chart}
                 </div>
                 <div className={classes.foom}>
                     <div className={classes.sep}>
@@ -175,6 +199,7 @@ class Statistics extends Component
                     <p className={classes.curr}>Your Donated Volume : {this.state.currVol}</p>
                     <p className={classes.curr}>Your Available currency : {this.state.currCurrency}</p>
                 </div>
+                {this.state.loading ? null : <Gridview totalBlood={this.state.totalBlood}/>}
             </React.Fragment>
         )
     }
