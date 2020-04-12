@@ -6,4 +6,23 @@
     left: 0px;
     top: 0px;
 }
-    
+
+.particles {
+    height: 150vh;
+    width: 100%;
+    z-index: -100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: fadeIn .8s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
