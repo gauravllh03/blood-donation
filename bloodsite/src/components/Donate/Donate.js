@@ -118,7 +118,8 @@ class Donate extends Component
         curruser:0,
         currusermoney:0,
         net:null,
-        moneyneeds:0
+        moneyneeds:0,
+        toggleForm:false
     }
 
 
@@ -247,6 +248,12 @@ class Donate extends Component
         this.setState({net:f});
     }
 
+    toggleForms=()=>{
+        this.setState((currentState) => ({
+            formToggle: !currentState.formToggle, 
+        }));
+    }
+
     render()
     {
         const formElementsArray=[];
@@ -291,20 +298,16 @@ class Donate extends Component
 
         ))
 
+
         
         let redirect=null;
         if(!this.props.isAuthenticated)
         {
             redirect=<Redirect to="/"/>;
         }
-        return(
-            <React.Fragment>
-                {redirect}
-                <p className={classes.para}> Donate blood friends</p>
-                <br></br>
-                <div className={classes.Anchor}><a href="https://testa441.000webhostapp.com/" style={{textDecoration:"none",color:"white"}}>Find Blood Banks</a></div>
-                <div className={classes.Donate}>
-                <p className={classes.pa}>DONATED BLOOD?</p>
+
+        const donateForm =(
+            <div className={classes.Donate}>
                 <form style={{margin:"10px"}}>
                     
                     {form}
@@ -312,27 +315,38 @@ class Donate extends Component
                 </form>
                 <Button btnType="Success" clicked={this.donateBloodHandler}>Submit</Button>
                 </div>
-                <br></br>
-                <br></br>
-                <div className={classes.Donate}>
+        );
+
+        const buyForm=(
+            <div className={classes.Donate}>
                 <p style={{color:"white"}}>Your total blood donation volume is {this.state.curruser}</p>
-                <p className={classes.pa}>BUY BLOOD?</p>
                 <form style={{margin:"10px"}} >
-                    
                     {form1}
                     <br/>
                 </form>
                 <Button btnType="Success" clicked={this.buyBloodHandler}>Submit</Button>
-                
-                </div>
                 <br></br>
                 <br></br>
-
                 {this.state.net==null?null:
                 <div className={classes.Net}>
-                <p>Your total cost is {this.state.moneyneeds} <br></br>{this.state.net<0?"You have adequate currency .Contact us and buy blood":"Your currency is less. Pay money or donate blood to earn enough currency"}</p>
-            </div>}
+                    <p>Your total cost is {this.state.moneyneeds} <br></br>{this.state.net<0?"You have adequate currency .Contact us and buy blood":"Your currency is less. Pay money or donate blood to earn enough currency"}</p>
+                </div>}
+                    <br></br>
+            </div>
+        );
+
+        let displayForm = !this.state.formToggle?donateForm:buyForm;
+
+        return(
+            <React.Fragment>
+                {redirect}
+                <p className={classes.para}> Donate blood friends</p>
                 <br></br>
+                <div className={classes.Anchor}><a href="https://testa441.000webhostapp.com/" style={{textDecoration:"none",color:"white"}}>Find Blood Banks</a></div>
+                <div className={classes.Button}>
+                    <Button btnType="Success" clicked={this.toggleForms}>{!this.state.formToggle?"DONATED BLOOD?":"BUY BLOOD?"}</Button>
+                </div>
+                {displayForm}
             </React.Fragment>
             
         )
