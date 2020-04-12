@@ -25,7 +25,6 @@ const questionPage = (props) =>{
         props.onTimerEnds()
         console.log("Timer ends");
         props.onUpdateTimer(props.timer);
-        console.log(props.timer);
       }
     }, [props.timer]);
 

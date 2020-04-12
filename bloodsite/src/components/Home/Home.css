@@ -9,9 +9,8 @@
 
 .Home{
     
-    width:90%;
+    /* width:90%; */
     margin:auto;
-    
     text-align: center;
     box-shadow: 0 4px 4px #ccc;
     border:1px solid #eee;
@@ -25,7 +24,7 @@
 .Facts
 {
      color:white;
-     width:80%;
+     width:90%;
      margin:auto;
      margin-top:20px !important;
      margin-bottom: 20px !important;
@@ -33,23 +32,83 @@
 
 .Map
 {
-    width:300px;
     height:300px;
+    width:300px;
     margin: auto;
 }
-@media(min-width:600px)
+.Text
 {
-    .Home{
+    width:300px;
+    color:white;
+}
+.Maps
+{
+    height: 300px;
+    width:300px;
+    /* margin-top:20px; */
+    
+}
+@media(min-width:400px) and (max-width:700px)
+{
+    .Map
+    {
+        height:350px;
+        width:350px;
+        margin: auto;
+    }
+    .Text
+    {
+        width:350px;
+    }
+    .Maps
+    {
+        height: 350px;
+        width:350px;
+        /* margin-top:20px; */
+    }
+}
+@media(min-width:701px) and (max-width:975px)
+{
+    .Map
+    {
+        height:350px;
+        width:550px;
+        margin: auto;
+    }
+    .Text
+    {
+        width:550px;
+    }
+    .Maps
+    {
+        height: 350px;
+        width:550px;
+        /* margin-top:20px; */
+    }
+}
+@media(min-width:976px)
+{
+    /* .Home{
         width:500px;
         margin-left:10%;
         float:left;
-    }
+    }*/
     
     .Map
     {
-        width:350px;
-        height:350px;
-        margin-left: 25%;
+        height: 320px;
+        width:400px;
+        margin: auto;
+    }
+    .Text
+    {
+        width:400px;
+    }
+    .Maps
+    {
+        height:280px;
+        width:400px;
+        /* margin-top:10px; */
     }
     .para{
         font-family: 'Nosifer', sans-serif;

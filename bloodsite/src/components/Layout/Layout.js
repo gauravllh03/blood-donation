@@ -34,7 +34,7 @@ class Layout extends Component
                 
             <Toolbar isAuth={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler}/>
             <SideDrawer isAuth={this.props.isAuthenticated} open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
-            <main style={{marginTop:"70px"}}>
+            <main style={{marginTop:"55px"}}>
                 {this.props.children}
             </main>
         </React.Fragment>

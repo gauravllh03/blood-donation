@@ -11,14 +11,76 @@
     padding: 20px;
     font-size: 15px;
     text-align: center;
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     box-shadow:0px 3px 4px #ccc;
     color: white;
 }
 
 .griditem:hover {
-    -ms-transform: scale(1.8); /* IE 9 */
-    -webkit-transform: scale(1.8); /* Safari 3-8 */
-    transform: scale(1.8); 
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+
+@media(min-width:0px) and (max-width:400px) 
+{
+    .gridcontainer {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        grid-gap: 120px;
+        justify-content: space-evenly;
+    }
+      
+    .griditem {
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        font-size: 12px;
+        text-align: center;
+        height: 250px;
+        width: 80%;
+        margin:auto;
+        margin-bottom: 30px;
+        box-shadow:0px 3px 4px #ccc;
+        color: white;
+    }
+    
+    .griditem:hover {
+        -ms-transform: scale(1.1); /* IE 9 */
+        -webkit-transform: scale(1.1); /* Safari 3-8 */
+        transform: scale(1.1); 
+    }
+}
+
+
+
+@media(min-width:401) and (max-width:800px)
+{
+    .gridcontainer {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        grid-gap: 120px;
+        justify-content: space-evenly;
+    }
+      
+    .griditem {
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 35px;
+        font-size: 16px;
+        text-align: center;
+        height: 250px;
+        width: 40%;
+        margin:auto;
+        margin-bottom: 30px;
+        box-shadow:0px 3px 4px #ccc;
+        color: white;
+    }
+    
+    .griditem:hover {
+        -ms-transform: scale(1.2); /* IE 9 */
+        -webkit-transform: scale(1.2); /* Safari 3-8 */
+        transform: scale(1.1); 
+    }
 }

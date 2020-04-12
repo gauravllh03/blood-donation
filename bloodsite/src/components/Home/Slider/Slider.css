@@ -38,3 +38,16 @@
     90% {left: -800%;}
     100% {left: -900%;}
 }
+
+@media(max-width:500px)
+{
+    .slid{
+        height:200px;
+    }
+    .figur{
+        height:200px;
+    }
+    .imag{
+        height:200px;
+    }
+}

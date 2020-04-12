@@ -104,7 +104,7 @@ class Quiz extends Component
             lives=lives<=0?0:lives-1;
             this.deductLives(lives)
         }
-        ()=>this.onUpdateTimer(this.props.timer);
+        this.props.onUpdateTimer(this.props.timer);
         this.setState((state) => ({
           answersCount: {
             ...state.answersCount,
@@ -143,7 +143,8 @@ class Quiz extends Component
           answer: '',
         //   timer:10
         });
-        ()=>this.onUpdateTimer(this.props.timer);
+        this.props.onUpdateTimer(this.props.timer);
+        //()=>this.onUpdateTimer(this.props.timer);
         console.log("New question");
         console.log(this.props.timer);
     }

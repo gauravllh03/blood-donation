@@ -7,7 +7,8 @@ import { Redirect } from "react-router";
 import Facts from "../Facts/Facts";
 import axios from 'axios';
 import FactsList from '../../assets/api/FactsList'
-import Slider from './Slider/Slider'
+import Slider from './Slider/Slider';
+
 
 class Home extends Component
 {
@@ -223,22 +224,33 @@ class Home extends Component
         return(
             <React.Fragment>
                 {redirect}
-		<Slider />
+		        <Slider />
                 {red}
-                <p className={classes.para}>Please Fill the survey</p>
-                <div>
-                    <div className={classes.Home}>
-                        <form>
-                            {form}
-                        </form>
-                        <Button btnType="Success" clicked={this.onPredict} >Submit</Button>
+
+                <div className="container" style={{marginTop:"20px"}}>
+                    <div className="row">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
+                            <div className={classes.Home}>
+                                <p style={{fontSize:"20px"}}> Please fill the survey</p>
+                                <form>
+                                    {form}
+                                </form>
+                                <Button btnType="Success" clicked={this.onPredict} >Submit</Button>
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-12 col-sm-12">
+
+                            <div className={classes.Map}>
+                                <div className={classes.Text} style={{textAlign:"center",backgroundColor:"black",fontSize:"24px",marginTop:"10px"}}>Blood banks near me &#129488;</div>
+                                <iframe src="https://testa441.000webhostapp.com/" className={classes.Maps} ></iframe>
+                                <div className={classes.Text} style={{textAlign:"center",backgroundColor:"black",fontSize:"24px",marginTop:"5px"}}>Did you know?</div>
+                                <div><Facts  myth= {FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div className={classes.Facts}>
-                        <div ><Facts  myth= {FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
-                        <iframe src="https://testa441.000webhostapp.com/" className={classes.Map}></iframe>
-                    </div>
-                    
                 </div>
+                                
             </React.Fragment>
         )
     }
