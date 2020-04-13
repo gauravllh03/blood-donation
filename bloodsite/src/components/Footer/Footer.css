@@ -1,0 +1,54 @@
+.footer{
+    margin: 20px 0 0 0;
+    background-color: black;
+    color: blanchedalmond;
+    padding: 10px;
+    width: 100%;
+}
+
+.links,.team,.about{
+    display: inline-block;
+    margin: 5px 5%;
+}
+
+img,.heading{
+    display: inline-block;
+}
+.about{
+    float: left;
+    margin: 2%;
+    width: 35%;
+}
+
+@media (max-width: 900px){
+    .about{
+        width: 100%;
+        margin: 2% auto;
+    }
+}
+
+.copyright{
+    text-align: center;
+    background-color: gray;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+}
+
+a{
+    color: white;
+    text-decoration-line: none;
+}
+a:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+h3 {
+    color: wheat;
+    text-decoration-line: underline;
+}
+
+span{
+    color: white;
+}

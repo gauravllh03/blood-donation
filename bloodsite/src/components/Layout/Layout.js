@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import SnowStorm from 'react-snowstorm';
 import Particles from 'react-particles-js';
 import classes from './Layout.css';
+import Footer from '../Footer/Footer';
+
 class Layout extends Component
 {
     state={
@@ -76,9 +78,10 @@ class Layout extends Component
         /> */}
             <Toolbar isAuth={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler}/>
             <SideDrawer isAuth={this.props.isAuthenticated} open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
-            <main style={{marginTop:"55px"}}>
+            <main style={{marginTop:"55px",minHeight:"115vh"}}>
                 {this.props.children}
             </main>
+            <Footer/>
         </React.Fragment>
         );
     }
