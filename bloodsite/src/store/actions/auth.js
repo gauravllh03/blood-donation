@@ -59,7 +59,7 @@ export const subtractTime=(time)=>{
     }
 }
 
-export const auth=(email,password,isSignUp)=>{
+export const auth=(email,password,name,blood,gender,isSignUp)=>{
     return dispatch=>{
         dispatch(authStart());
 
@@ -68,6 +68,7 @@ export const auth=(email,password,isSignUp)=>{
             password:password,
             returnSecureToken:true
         }
+
         let url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD3nIFAqWuVrOwol2QMsgYJgFU3kWXC6fU';
         if(!isSignUp)
         {
@@ -82,8 +83,29 @@ export const auth=(email,password,isSignUp)=>{
             localStorage.setItem('token',response.data.idToken);
             localStorage.setItem('expirationDate',expirationDate);
             localStorage.setItem('userId',response.data.localId);
+            if(name=="signin")
+                console.log("Signed in bro");
+            else    
+            {
+                const userData={
+                    email:email,
+                    name:name,
+                    bloodgroup:blood,
+                    gender:gender
+                };
+                let userId=response.data.localId;
+                let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
+                axios.put(url,userData)
+                .then(resp=>{
+                    console.log("Sign Up data on firebase bro!");
+                })
+                .catch(error=>{
+                    console.log("Error"+error);
+                })
+            }    
             dispatch(authSuccess(response.data.idToken,response.data.localId));
             dispatch(checkAuthTimeout(response.data.expiresIn));
+
         })
         .catch(err=>{
             console.log(err);

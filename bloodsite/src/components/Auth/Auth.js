@@ -46,6 +46,82 @@ class Auth extends Component
             
            
         },
+        controls1:{
+            email:
+            {
+                elementType:'input',
+                elementConfig:{
+                    type:'email',
+                    placeholder:'Your Mail'
+                },
+                value:'',
+                validation:{
+                    required:true,
+                    isEmail:true
+                },
+                valid:false,
+                touched:false
+            },
+            password:
+            {
+                elementType:'input',
+                elementConfig:{
+                    type:'password',
+                    placeholder:'Your Password'
+                },
+                value:'',
+                validation:{
+                    required:true,
+                    minLength:7
+                },
+                valid:false,
+                touched:false
+            },
+            name:
+            {
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Your Name'
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false
+            },
+            blood:
+            {
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Your Bloodgroup'
+                },
+                value:'',
+                validation:{
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+            gender:
+            {
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Your gender M/F'
+                },
+                value:'',
+                validation:{
+                    required:true,
+                    maxLength:1
+                },
+                valid:false,
+                touched:false
+            },
+           
+        },
         isSignUp:true
         
     }
@@ -93,9 +169,29 @@ class Auth extends Component
 
     }
 
+    inputChangedHandlerNow=(event,controlName)=>{
+        const updatedControls={
+            ...this.state.controls1,
+            [controlName]:{
+                ...this.state.controls1[controlName],
+                value:event.target.value,
+                valid:this.checkValidity(event.target.value,this.state.controls1[controlName].validation),
+                touched:true
+            }
+        };
+        this.setState({
+            controls1:updatedControls
+        });
+
+    }
+
+
     submitHandler=(event)=>{
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.isSignUp);
+        if(this.state.isSignUp==false)
+            this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,"signin","signin","M",this.state.isSignUp);
+        else
+            this.props.onAuth(this.state.controls1.email.value,this.state.controls1.password.value,this.state.controls1.name.value,this.state.controls1.blood.value,this.state.controls1.gender.value,this.state.isSignUp);
     }
 
     switchAuthModeHandler=()=>{
@@ -106,6 +202,14 @@ class Auth extends Component
         })
     }
 
+    SwitchSignIn=()=>{
+        this.setState({isSignUp:false});
+    }
+
+    SwitchSignUp=()=>{
+        this.setState({isSignUp:true});
+    }
+
     render()
     {
         const formElementsArray=[];
@@ -114,6 +218,15 @@ class Auth extends Component
             formElementsArray.push({
                 id:key,
                 config:this.state.controls[key]
+            });
+        }
+
+        const formElementsArray1=[];
+        for(let key in this.state.controls1)
+        {
+            formElementsArray1.push({
+                id:key,
+                config:this.state.controls1[key]
             });
         }
 
@@ -128,7 +241,18 @@ class Auth extends Component
                    touched={formElement.config.touched} />
 
         ))
+        
+        let form1=formElementsArray1.map(formElement=>(
+            <Input key={formElement.id}
+               elementType={formElement.config.elementType} 
+               elementConfig={formElement.config.elementConfig} 
+               value={formElement.config.value}
+               changed={(event)=>this.inputChangedHandlerNow(event,formElement.id)}
+               invalid={!formElement.config.valid} 
+               shouldValidate={formElement.config.validation}
+               touched={formElement.config.touched} />
 
+    ))
         if(this.props.loading)
         {
             form=<Spinner></Spinner>
@@ -161,12 +285,25 @@ class Auth extends Component
         {
             redirect=<Redirect to="/home"/>;
         }
+        let authform=null;
+        if(this.state.isSignUp==true)
+        {
+            authform=form1;
+        }
+        else
+        {
+            authform=form;
+        }
         return(
            
             <div className={classes.Auth}>
                 {redirect}
                 {/* <i className="fa fa-user-plus" style={{fontSize:"50px",color:"red"}}/> */}
-                <p className={classes.pa}>SIGNIN TO CONTINUE</p>
+                {/* <p className={classes.pa}>SIGNIN TO CONTINUE</p> */}
+                <div style={{width:"100%"}}>
+                    <button className={classes.But} onClick={this.SwitchSignUp}>SignUp</button>
+                    <button className={classes.But} onClick={this.SwitchSignIn}>SignIn</button>
+                </div>
                 <span className="fa-stack fa-5x">
                     <i className="fa fa-circle fa-stack-2x icon-background4" style={{color:"white"}}></i>
                     <i className="fa fa-user-plus fa-stack-1x" style={{color:"red"}}></i>
@@ -174,11 +311,11 @@ class Auth extends Component
                 {errorMessage}
                 <form style={{margin:"10px"}} onSubmit={this.submitHandler}>
                     
-                    {form}
+                    {authform}
                     <br></br>
-                    <Button btnType="Success" >{this.state.isSignUp? "SIGN UP" :"SIGN IN"}</Button>
+                    <Button btnType="Success" >SUBMIT</Button>
                 </form>
-                <Button btnType="Danger" clicked={this.switchAuthModeHandler}>Switch to {this.state.isSignUp?"SignIn":"SignUp"}</Button>
+                
 
                 
             </div>
@@ -198,7 +335,7 @@ const mapStateToProps=state=>{
 };
 const mapDispatchToProps=dispatch=>{
     return{
-        onAuth:(email,password,isSignUp)=>dispatch(actions.auth(email,password,isSignUp)),
+        onAuth:(email,password,name,blood,gender,isSignUp)=>dispatch(actions.auth(email,password,name,blood,gender,isSignUp)),
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(Auth);

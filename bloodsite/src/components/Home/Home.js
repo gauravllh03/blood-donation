@@ -241,16 +241,16 @@ class Home extends Component
                         <div className="col-lg-6 col-md-12 col-sm-12">
 
                             <div className={classes.Map}>
-                                <div className={classes.Text} style={{textAlign:"center",backgroundColor:"black",fontSize:"24px",marginTop:"10px"}}>Blood banks near me &#129488;</div>
+                                <div className={classes.Text} style={{textAlign:"center",backgroundColor:"black",fontSize:"18px",marginTop:"10px"}}>Blood banks near me &#129488;</div>
                                 <iframe src="https://testa441.000webhostapp.com/" className={classes.Maps} ></iframe>
-                                <div className={classes.Text} style={{textAlign:"center",backgroundColor:"black",fontSize:"24px",marginTop:"5px"}}>Did you know?</div>
+                                <div className={classes.Text} style={{textAlign:"center",backgroundColor:"black",fontSize:"18px",marginTop:"5px"}}>Did you know?</div>
                                 <div><Facts  myth= {FactsList[0].Myth} fact={FactsList[0].Fact}/></div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                                
+                <div className={classes.FooterFix}></div>      
             </React.Fragment>
         )
     }

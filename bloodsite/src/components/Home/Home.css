@@ -19,12 +19,15 @@
     background-color: rgb(0,0,0,0.2);
 }
 
-
+.FooterFix
+{
+    margin-top: 430px;
+}
 
 .Facts
 {
      color:white;
-     width:90%;
+     width:70%;
      margin:auto;
      margin-top:20px !important;
      margin-bottom: 20px !important;
@@ -85,6 +88,10 @@
         width:550px;
         /* margin-top:20px; */
     }
+    .FooterFix
+    {
+        margin-top: 430px;  
+    }
 }
 @media(min-width:976px)
 {
@@ -106,9 +113,13 @@
     }
     .Maps
     {
-        height:280px;
+        height:300px;
         width:400px;
         /* margin-top:10px; */
+    }
+    .FooterFix
+    {
+        margin-top: 50px;
     }
     .para{
         font-family: 'Nosifer', sans-serif;

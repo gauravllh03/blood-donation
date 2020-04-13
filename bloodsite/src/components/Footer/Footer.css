@@ -4,6 +4,7 @@
     color: blanchedalmond;
     padding: 10px;
     width: 100%;
+    bottom:0;
 }
 
 .links,.team,.about{
@@ -41,7 +42,7 @@ a{
 }
 a:hover{
     color: white;
-    text-decoration: underline;
+   
 }
 
 h3 {

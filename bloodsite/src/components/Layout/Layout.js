@@ -29,13 +29,19 @@ class Layout extends Component
     }
     render()
     {
+        let footer=null;
+        if(this.props.isAuthenticated)
+        {
+            footer=<Footer/>;
+        }
+        let snow=<Snowfall className={classes.particles}
+            color="red"
+            snowflakeCount={150}
+            style={{ height: '150vh', width: '100%',zIndex:"-100"}} 
+            />  ;
         return (
         <React.Fragment>
-                 <Snowfall className={classes.particles}
-                        color="red"
-                        snowflakeCount={150}
-                        style={{ height: '150vh', width: '100%',zIndex:"-100"}} 
-                />  
+            {snow}     
 
             {/* <div>
                 <SnowStorm excludeMobile="false" flakesMaxActive="150" snowColor="red" followMouse="false" vMaxY="5" snowSize="20"/>
@@ -81,7 +87,7 @@ class Layout extends Component
             <main style={{marginTop:"55px",minHeight:"115vh"}}>
                 {this.props.children}
             </main>
-            <Footer/>
+            {footer}
         </React.Fragment>
         );
     }

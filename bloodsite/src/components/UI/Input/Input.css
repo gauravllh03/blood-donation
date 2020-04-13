@@ -34,3 +34,18 @@
     border:2px solid red;
     
 }
+
+
+@media(max-width:650px)
+{
+    .Input
+    {
+        width:100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin:auto;
+    }
+    .InputElement{
+        padding: 0px 0px;
+    }
+}
