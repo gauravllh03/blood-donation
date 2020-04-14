@@ -248,7 +248,18 @@ class Donate extends Component
         this.setState({net:f});
     }
 
-    toggleForms=()=>{
+    toggleFormsBuy=()=>{
+        let toggle= this.state.formToggle;
+        if(toggle)return;
+        else
+        this.setState((currentState) => ({
+            formToggle: !currentState.formToggle, 
+        }));
+    }
+    toggleFormsDonate=()=>{
+        let toggle= this.state.formToggle;
+        if(!toggle)return;
+        else
         this.setState((currentState) => ({
             formToggle: !currentState.formToggle, 
         }));
@@ -319,7 +330,6 @@ class Donate extends Component
 
         const buyForm=(
             <div className={classes.Donate}>
-                <p style={{color:"white"}}>Your total blood donation volume is {this.state.curruser}</p>
                 <form style={{margin:"10px"}} >
                     {form1}
                     <br/>
@@ -344,7 +354,11 @@ class Donate extends Component
                 <br></br>
                 <div className={classes.Anchor}><a href="https://testa441.000webhostapp.com/" style={{textDecoration:"none",color:"white"}}>Find Blood Banks</a></div>
                 <div className={classes.Button}>
-                    <Button btnType="Success" clicked={this.toggleForms}>{!this.state.formToggle?"DONATED BLOOD?":"BUY BLOOD?"}</Button>
+                    <Button btnType="Success" clicked={this.toggleFormsDonate} >DONATED BLOOD?</Button>
+                    <Button btnType="Success" clicked={this.toggleFormsBuy}>BUY BLOOD?</Button>
+                </div>
+                <div className={classes.Button}>
+                    <p style={{color:"white"}}>Your total blood donation volume is {this.state.curruser}</p>
                 </div>
                 {displayForm}
             </React.Fragment>

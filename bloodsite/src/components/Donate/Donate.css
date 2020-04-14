@@ -9,6 +9,7 @@
 .Button{
     width: auto;
     text-align: center;
+    margin: 16px;
 }
 
 .Donate
