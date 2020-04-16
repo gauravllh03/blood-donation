@@ -91,7 +91,8 @@ export const auth=(email,password,name,blood,gender,isSignUp)=>{
                     email:email,
                     name:name,
                     bloodgroup:blood,
-                    gender:gender
+                    gender:gender,
+                    lives:3
                 };
                 let userId=response.data.localId;
                 let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';

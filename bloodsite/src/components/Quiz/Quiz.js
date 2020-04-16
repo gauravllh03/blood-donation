@@ -48,7 +48,7 @@ class Quiz extends Component
         const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));  
         let lives= 3
         let userId= localStorage.getItem('userId')
-        let url='https://bloodsite-87a36.firebaseio.com/lives/'+userId+'.json';
+        let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
         await axios.get(url)
         .then(response=>{
             lives= response.data.lives
@@ -88,8 +88,8 @@ class Quiz extends Component
     deductLives(lives){
         let userId= localStorage.getItem('userId')
         let obj = {lives:lives}
-        let url='https://bloodsite-87a36.firebaseio.com/lives/'+userId+'.json';
-        axios.put(url,obj)
+        let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
+        axios.patch(url,obj)
         .then(response=>{
             console.log(response.data);
         })
