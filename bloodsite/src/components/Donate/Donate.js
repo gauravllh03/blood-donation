@@ -123,9 +123,9 @@ class Donate extends Component
     }
 
 
-    componentWillMount()
+    async componentWillMount()
     {
-        axios.get('https://bloodsite-87a36.firebaseio.com/donated.json')
+        await axios.get('https://bloodsite-87a36.firebaseio.com/donated.json')
         .then(resp=>{
             console.log(resp.data);
             let fetchedBlood=[];
@@ -145,11 +145,25 @@ class Donate extends Component
                 }
             }
             this.setState({curruser:val});
-
         })
         .catch(err=>{
             console.log(err);
         })
+
+        let name;
+        let bgroup;
+        let userId= localStorage.getItem('userId')
+        let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
+        await axios.get(url)
+        .then(response=>{
+            name=response.data.name;
+            bgroup=response.data.bloodgroup;
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+        this.inputChangedHandler(name,"name");
+        this.inputChangedHandler(bgroup,"bloodgroup");
     }
 
     inputChangedHandler=(event,controlName)=>{
@@ -157,8 +171,8 @@ class Donate extends Component
             ...this.state.controls,
             [controlName]:{
                 ...this.state.controls[controlName],
-                value:event.target.value,
-                valid:this.checkValidity(event.target.value,this.state.controls[controlName].validation),
+                value:event,
+                valid:this.checkValidity(event,this.state.controls[controlName].validation),
                 touched:true
             }
         };
@@ -220,7 +234,7 @@ class Donate extends Component
             console.log(error);
         })
         obj = {lives:3}
-        url='https://bloodsite-87a36.firebaseio.com/lives/'+userId+'.json';
+        url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
         axios.put(url,obj)
         .then(response=>{
             console.log(response.data);
@@ -290,7 +304,7 @@ class Donate extends Component
                elementType={formElement.config.elementType} 
                elementConfig={formElement.config.elementConfig} 
                value={formElement.config.value}
-               changed={(event)=>this.inputChangedHandler(event,formElement.id)}
+               changed={(event)=>this.inputChangedHandler(event.target.value,formElement.id)}
                invalid={!formElement.config.valid} 
                shouldValidate={formElement.config.validation}
                touched={formElement.config.touched} />
@@ -302,7 +316,7 @@ class Donate extends Component
                elementType={formElement1.config.elementType} 
                elementConfig={formElement1.config.elementConfig} 
                value={formElement1.config.value}
-               changed={(event)=>this.inputChangedHandlering(event,formElement1.id1)}
+               changed={(event)=>this.inputChangedHandlering(event.target.value,formElement1.id1)}
                invalid={!formElement1.config.valid} 
                shouldValidate={formElement1.config.validation}
                touched={formElement1.config.touched} />

@@ -120,6 +120,25 @@ class Home extends Component
            
         },
     }
+
+    async componentDidMount(){
+        let name;
+        let bgroup;
+        let gender;
+        let userId= localStorage.getItem('userId')
+        let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
+        await axios.get(url)
+        .then(response=>{
+            name=response.data.name;
+            bgroup=response.data.bloodgroup;
+            gender=response.data.gender;
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+        this.inputChangedHandler(name,"name");
+        this.inputChangedHandler(bgroup,"bloodgroup");
+    }
     
     checkValidity(value,rules)
     {
@@ -135,14 +154,16 @@ class Home extends Component
         return isValid;
     }
 
-    inputChangedHandler=(event,controlName)=>{
+
+
+    inputChangedHandler=(value,controlName)=>{
         console.log(typeof(controlName));
         const updatedControls={
             ...this.state.controls,
             [controlName]:{
                 ...this.state.controls[controlName],
-                value:event.target.value,
-                valid:this.checkValidity(event.target.value,this.state.controls[controlName].validation),
+                value:value,
+                valid:this.checkValidity(value,this.state.controls[controlName].validation),
                 touched:true
             }
         };
@@ -195,7 +216,7 @@ class Home extends Component
                elementType={formElement.config.elementType} 
                elementConfig={formElement.config.elementConfig} 
                value={formElement.config.value}
-               changed={(event)=>this.inputChangedHandler(event,formElement.id)}
+               changed={(event)=>this.inputChangedHandler(event.target.value,formElement.id)}
                invalid={!formElement.config.valid} 
                shouldValidate={formElement.config.validation}
                touched={formElement.config.touched} />
