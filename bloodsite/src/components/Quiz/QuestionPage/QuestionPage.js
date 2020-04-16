@@ -23,16 +23,8 @@ const questionPage = (props) =>{
 
       if(props.timer===0){
         props.onTimerEnds()
-        console.log("Timer ends");
-        props.onUpdateTimer(props.timer);
       }
     }, [props.timer]);
-
-    useEffect(()=>{
-      return ()=>{
-        clearTimeout()
-      }
-    },[])
 
     function renderAnswerOptions(key) {
         return (
@@ -75,7 +67,6 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps=dispatch=>{
   return{
-      onUpdateTimer:(time)=>dispatch(actions.update(time)),
       onReduceTimer:(time)=>dispatch(actions.subtractTime(time)),
       
   };

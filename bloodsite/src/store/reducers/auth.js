@@ -14,7 +14,7 @@ const initialState={
         'A':8,
         'B':8
     },
-    timer:10
+    timer:40
 };
 
 const reducer=(state=initialState,action)=>{

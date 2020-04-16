@@ -235,7 +235,7 @@ class Donate extends Component
         })
         obj = {lives:3}
         url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';
-        axios.put(url,obj)
+        axios.patch(url,obj)
         .then(response=>{
             console.log(response.data);
         })

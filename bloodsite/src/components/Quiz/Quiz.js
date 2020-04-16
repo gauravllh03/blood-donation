@@ -104,7 +104,6 @@ class Quiz extends Component
             lives=lives<=0?0:lives-1;
             this.deductLives(lives)
         }
-        this.props.onUpdateTimer(this.props.timer);
         this.setState((state) => ({
           answersCount: {
             ...state.answersCount,
@@ -141,10 +140,7 @@ class Quiz extends Component
           question: quizQuestions[counter].question,
           answerOptions: quizQuestions[counter].answers,
           answer: '',
-        //   timer:10
         });
-        this.props.onUpdateTimer(this.props.timer);
-        //()=>this.onUpdateTimer(this.props.timer);
         console.log("New question");
         console.log(this.props.timer);
     }
@@ -165,9 +161,8 @@ class Quiz extends Component
     }
 
     timerEnds(){
-        console.log('here')
-        this.nextStep('Incorrect')
-        console.log('done')
+        this.deductLives(0);
+        this.setResults(this.getResults())
     }
     renderQuiz(){
         return (
@@ -215,9 +210,7 @@ const mapStateToProps=state=>{
 }
 const mapDispatchToProps=dispatch=>{
     return{
-        onUpdateTimer:(time)=>dispatch(actions.update(time)),
         onReduceTimer:(time)=>dispatch(actions.subtractTime(time)),
-        
     };
   }
 

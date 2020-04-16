@@ -136,8 +136,10 @@ class Home extends Component
         .catch(error=>{
             console.log(error)
         })
-        this.inputChangedHandler(name,"name");
-        this.inputChangedHandler(bgroup,"bloodgroup");
+        if(name)
+            this.inputChangedHandler(name,"name");
+        if(bgroup)
+            this.inputChangedHandler(bgroup,"bloodgroup");
     }
     
     checkValidity(value,rules)
