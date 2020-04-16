@@ -132,12 +132,11 @@ class Home extends Component
         {
             isValid=value.trim()!=='' && isValid;
         }
-        
-    
         return isValid;
     }
 
     inputChangedHandler=(event,controlName)=>{
+        console.log(typeof(controlName));
         const updatedControls={
             ...this.state.controls,
             [controlName]:{
@@ -150,7 +149,6 @@ class Home extends Component
         this.setState({
             controls:updatedControls
         });
-
     }
 
     onPredict=()=>{
@@ -192,7 +190,6 @@ class Home extends Component
                 config:this.state.controls[key]
             });
         }
-
         let form=formElementsArray.map(formElement=>(
             <Input key={formElement.id}
                elementType={formElement.config.elementType} 

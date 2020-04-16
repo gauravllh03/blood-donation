@@ -1,0 +1,86 @@
+.para{
+    font-family: 'Nosifer', sans-serif;
+    font-size: 36px;
+    color:white;
+    text-shadow: 0px 2px red;
+    text-align: center;
+}
+
+
+/*.team{
+    margin: 5% auto;
+    border: 1px solid red;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px 300px;
+}
+
+.persons{
+    border: 1px solid white;
+    display: inline-block;
+    width: auto;
+}*/
+.team1 {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    /*grid-gap: 5%;*/
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+}
+.team2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    /*grid-gap: 5%;*/
+    justify-content: space-evenly;
+    margin: 20px;
+}
+.persons {
+    background-color: bisque;
+    text-align: center;
+    width: 280px;
+    margin: 10px;
+    border-radius: 5px;
+    color: white;
+}
+.persons:hover {
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1); 
+}
+.name{
+    font-size: 1.6em;
+    color:black;
+    font-weight: bold;
+}
+h1{
+    color: white;
+}
+.email,.phone,h4{
+    text-decoration: none;
+    color:black;
+}
+
+
+@media(max-width: 860px){
+    .team1{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+    .person3{
+        margin: 30px 0 0 0;
+    }
+}
+
+@media(max-width: 550px){
+    .team1,.team2{
+        grid-template-columns: auto;
+    }
+    .persons{
+        margin: 20px 0;
+    }
+
+}

@@ -14,6 +14,7 @@ class Footer extends Component{
                         <p>
                             Bloodsite is a site which play quiz bla bla bla and you can give blood take blood. You can interact 
                             with donors. Donate blood, earn lives and play quiz. You can also logout.
+                            <p style={{textDecoration:"underline"}}><NavLink to="/about"><span className={classes.Team}>Our Team</span></NavLink></p>
                         </p>
                     </div>
                     <div className={classes.links}>

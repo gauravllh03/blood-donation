@@ -109,6 +109,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1"
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "react-social-icons": "^4.1.0"
   }
 }

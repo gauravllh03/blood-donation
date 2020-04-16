@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
 import FactsPage from './components/FactsPage/FactsPage';
 import ChatBox from './components/ChatBox/ChatBox';
+import AboutUs from './components/AboutUs/AboutUs';
 class App extends Component {
   componentDidMount()
   {
@@ -29,6 +30,7 @@ class App extends Component {
       <Route path="/research" exact component={Research}/>
       <Route path="/logout" exact component={Logout}/>
       <Route path='/help' exact component={ChatBox}/>
+      <Route path="/about" exact component={AboutUs}/>
       <Route path="/" exact component={Auth}/>
       
       
