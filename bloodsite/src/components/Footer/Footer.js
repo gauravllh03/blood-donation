@@ -12,9 +12,8 @@ class Footer extends Component{
                         <img src={burgerLogo} height="21" width="21"/>&nbsp;&nbsp;
                         <h3 className={classes.heading}>About Bloodsite</h3>
                         <p>
-                            Bloodsite is a site which play quiz bla bla bla and you can give blood take blood. You can interact 
-                            with donors. Donate blood, earn lives and play quiz. You can also logout.
-                            <p style={{textDecoration:"underline"}}><NavLink to="/about"><span className={classes.Team}>Our Team</span></NavLink></p>
+                            We are a non-profit dedicated to solving the most pressing need of today's healthcare system - connecting blood donors with patients in need.
+                            With Bloodsite, you can donate blood, earn lives and learn about blood donation all in one place.
                         </p>
                     </div>
                     <div className={classes.links}>
@@ -26,7 +25,7 @@ class Footer extends Component{
                         <NavLink to="/research">Research</NavLink><br/><br/>
                     </div>
                     <div className={classes.team}>
-                        <h3>Our Team</h3>
+                        <h3><NavLink to="/about">Our Team</NavLink></h3>
                         <span>Utsav Das &nbsp;&nbsp;</span>
                             <a href="https://www.linkedin.com/in/utsav-das-8b373b192" target="_blank">
                                 <i class="fa fa-linkedin-square"></i></a>&nbsp;
