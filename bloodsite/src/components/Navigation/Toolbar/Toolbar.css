@@ -23,7 +23,7 @@
     height: 80%;
 }
 
-@media (max-width:970px)
+@media (max-width:1050px)
 {
     .DesktopOnly{
         display:none;

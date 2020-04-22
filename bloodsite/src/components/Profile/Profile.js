@@ -3,6 +3,8 @@ import axios from 'axios';
 import profilepic from '../../assets/images/profile.png'
 import classes from './Profile.css'
 import Spinner from '../UI/Spinner/Spinner.js'
+import StripeCheckout from 'react-stripe-checkout';
+import burgerLogo from '../../assets/images/blood.jfif';
 
 class Profile extends Component {
 	state = {
@@ -12,7 +14,7 @@ class Profile extends Component {
 		gender: null,
 		bloodgroup: null,
 		bloodVol: null,
-		loading: true
+		loading: true,
 	};
 
 
@@ -58,6 +60,9 @@ class Profile extends Component {
 				})
 	}
 
+	fileChangeHandler=(event)=>{
+		console.log(event.target.files[0]);
+	}
 
 	render () {
 		let profileData= <Spinner/>;
@@ -75,7 +80,26 @@ class Profile extends Component {
 						<p>Blood Group: {this.state.bloodgroup}</p>
 						<p>Total Blood Donated: {this.state.bloodVol}</p>
 					</div>
+
+				<div className={classes.contribute}>
+					<p style={{textAlign:"center"}}>Dear, {this.state.name} Please donate for the poor!Your small voluntary contribution will enable us to conduct blood test and provide treatment for common blood diseases in financially backward areas of our society.Thank you!</p>
+					<div className={classes.payment}>
+                    	<StripeCheckout
+							amount="5"
+							billingAddress
+							description="Please Contribute"
+							image={burgerLogo}
+							locale="auto"
+							name="BloodSite"
+							stripeKey="pk_test_kFpaOEfmED0xgn9bybb6i7jL00noPEPbN2"
+							token={this.onToken}
+							zipCode
+							label="Pay 10 Rs"
+							panelLabel="Pay {{amount}}"
+                    	/>
+                	</div>
 				</div>
+			</div>
 			)
 		}
 

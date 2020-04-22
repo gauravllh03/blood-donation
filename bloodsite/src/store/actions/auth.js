@@ -59,7 +59,7 @@ export const subtractTime=(time)=>{
     }
 }
 
-export const auth=(email,password,name,blood,gender,isSignUp)=>{
+export const auth=(email,password,name,blood,age,gender,isSignUp)=>{
     return dispatch=>{
         dispatch(authStart());
 
@@ -92,7 +92,8 @@ export const auth=(email,password,name,blood,gender,isSignUp)=>{
                     name:name,
                     bloodgroup:blood,
                     gender:gender,
-                    lives:3
+                    lives:3,
+                    age:age
                 };
                 let userId=response.data.localId;
                 let url='https://bloodsite-87a36.firebaseio.com/users/'+userId+'.json';

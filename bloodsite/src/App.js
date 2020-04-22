@@ -15,11 +15,15 @@ import FactsPage from './components/FactsPage/FactsPage';
 import ChatBox from './components/ChatBox/ChatBox';
 import Profile from './components/Profile/Profile';
 import AboutUs from './components/AboutUs/AboutUs';
+
+
+
 class App extends Component {
   componentDidMount()
   {
     this.props.onTryAutoSignUp();
   }
+  
   render() {
     let routes=(
       <Switch>

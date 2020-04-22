@@ -204,9 +204,9 @@ class Auth extends Component
     submitHandler=(event)=>{
         event.preventDefault();
         if(this.state.isSignUp==false)
-            this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,"signin","signin","M",this.state.isSignUp);
+            this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,"signin","signin","21","M",this.state.isSignUp);
         else
-            this.props.onAuth(this.state.controls1.email.value,this.state.controls1.password.value,this.state.controls1.name.value,this.state.controls1.blood.value,this.state.controls1.gender.value,this.state.isSignUp);
+            this.props.onAuth(this.state.controls1.email.value,this.state.controls1.password.value,this.state.controls1.name.value,this.state.controls1.blood.value,this.state.controls1.age.value,this.state.controls1.gender.value,this.state.isSignUp);
     }
 
     switchAuthModeHandler=()=>{
@@ -350,7 +350,7 @@ const mapStateToProps=state=>{
 };
 const mapDispatchToProps=dispatch=>{
     return{
-        onAuth:(email,password,name,blood,gender,isSignUp)=>dispatch(actions.auth(email,password,name,blood,gender,isSignUp)),
+        onAuth:(email,password,name,blood,age,gender,isSignUp)=>dispatch(actions.auth(email,password,name,blood,age,gender,isSignUp)),
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(Auth);

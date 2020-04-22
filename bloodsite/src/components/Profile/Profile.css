@@ -1,5 +1,14 @@
 .profilepicdiv {
 	margin: 50px;
+	margin-top: 70px !important;
+}
+
+.payment
+{
+	width:100px;
+	border:3px solid white;
+	border-radius: 9px;
+	margin:auto;
 }
 
 .image {
@@ -10,9 +19,25 @@
   	width: 20%;
 }
 
+.contribute
+{
+	width: 45%;
+	margin: auto;
+	border:1px solid white;
+	padding:10px;
+}
+
 .data {
 	margin: auto;
 	display: block;
-	font-family: 'Nosifer', sans-serif;
 	text-align: center
+}
+
+
+@media(max-width:700px)
+{
+	.contribute
+	{
+		width:70%;
+	}
 }
