@@ -120,6 +120,21 @@ class Auth extends Component
                 valid:false,
                 touched:false
             },
+            age:
+            {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your Age'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    maxLength:2
+                },
+                valid:false,
+                touched:false
+            }
            
         },
         isSignUp:true
