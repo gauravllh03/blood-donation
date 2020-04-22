@@ -163,8 +163,7 @@ class Statistics extends Component
         return(
             <React.Fragment>
                 {redirect}
-                <p className={classes.para}>Statistics work friends</p>
-                <div className={classes.chartbox} style={{width:"200px",height:"200px",margin:"auto",opacity:"0.7"}}>
+                <div className={classes.chartbox} style={{width:"200px",height:"200px",margin:"auto",marginTop:"100px",opacity:"0.7"}}>
                     {chart}
                 </div>
                 <div className={classes.foom}>

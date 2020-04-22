@@ -136,6 +136,9 @@
     .griditem{
         height: 180px;
         width: 180px;
-        margin: 5%;
+        
+        margin: auto;
+        margin-top: 30%;
     }
+    
 }

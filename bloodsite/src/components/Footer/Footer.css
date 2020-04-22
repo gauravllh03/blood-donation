@@ -8,11 +8,10 @@
 }
 
 .Team{
-   color:white;
+    color: wheat;
 }
 .Team:hover{
-    color:red;
-    font-size: 20px;
+    color:#ccc;
 }
 .links,.team,.about{
     display: inline-block;

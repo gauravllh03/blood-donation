@@ -7,10 +7,10 @@
     margin-bottom: 10px;
 }
 .collapsible {
-    background-color: rgba(26, 12, 221,0.3);
+    background-color: wheat;
     font-family: lobster;
     font-size: 40px !important;
-    color: white;
+    color: black;
     cursor: pointer;
     padding: 18px;
     width: 80%;
@@ -21,9 +21,13 @@
     margin: auto;
     display: block;
 }
+
+.collapsible:hover{
+  color: brown;
+}
   
   .content {
-    padding: 0 18px;
+    padding: 50px 18px;
     margin: auto;
     background-color: rgba(0,0,0,0.2);
     width:80%;

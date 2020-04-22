@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Result.css';
 import {Redirect} from 'react-router'; 
+import {NavLink} from 'react-router-dom';
 import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Button from '../../UI/Button/Button'
@@ -9,12 +10,9 @@ function Result(props) {
   const correctPer=(props.answerOptions["Correct"]?props.answerOptions["Correct"]:0)/5*100;
   const incorrectPer=(props.answerOptions["Incorrect"]?props.answerOptions["Incorrect"]:0)/5*100;
 
-  const donateBlood=()=>{
-      <Redirect to="/donate"/>
-  }
   let winEmail = (<div className={classes.getLives}>
                     <p>Your remaining lives: {props.lives}</p>
-                    <Button clicked={donateBlood()}>Get Lives!!!</Button>
+                    <Button ><NavLink to="/donate">Get Lives!!!</NavLink></Button>
                   </div>)
   if(props.quizResult==='Correct')
     winEmail=(

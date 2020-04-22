@@ -25,7 +25,7 @@ class Footer extends Component{
                         <NavLink to="/research">Research</NavLink><br/><br/>
                     </div>
                     <div className={classes.team}>
-                        <h3><NavLink to="/about">Our Team</NavLink></h3>
+                        <h3><NavLink to="/about"><span className={classes.Team}>Our Team</span></NavLink></h3>
                         <span>Utsav Das &nbsp;&nbsp;</span>
                             <a href="https://www.linkedin.com/in/utsav-das-8b373b192" target="_blank">
                                 <i class="fa fa-linkedin-square"></i></a>&nbsp;

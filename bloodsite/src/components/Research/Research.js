@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import { Redirect } from "react-router";
 import Spinner from '../UI/Spinner/Spinner'
 import Button from '../UI/Button/Button'
+import StripeCheckout from 'react-stripe-checkout';
+import burgerLogo from '../../assets/images/blood.jfif';
 
 class Research extends Component
 {
@@ -12,6 +14,13 @@ class Research extends Component
         page: 1
     };
 
+    onToken = (token, addresses) => {
+        // TODO: Send the token information and any other
+        // relevant information to your payment process
+        // server, wait for the response, and update the UI
+        // accordingly. How this is done is up to you. Using
+        // XHR, fetch, or a GraphQL mutation is typical.
+      };
     showDivs = (n) => {
         const newPage = this.state.page + n;
         if(newPage<1)
@@ -108,7 +117,6 @@ class Research extends Component
 
             <React.Fragment>
                 {redirect}
-                <p className={classes.para}>Research work friends</p>
                 <br/>
                 <p align="center" className={classes.text}><b><font size={36}>Cadaveric Blood Transfusion</font></b></p>
                 <br/>
@@ -119,6 +127,22 @@ class Research extends Component
                 <Button clicked={this.showDivs.bind(this,1)}>Next ❯</Button>
                 </div>
                 </center>
+
+                <div style={{marginLeft:"50px"}}>
+                    <StripeCheckout
+                        amount="5"
+                        billingAddress
+                        description="Please Contribute"
+                        image={burgerLogo}
+                        locale="auto"
+                        name="BloodSite"
+                        stripeKey="pk_test_kFpaOEfmED0xgn9bybb6i7jL00noPEPbN2"
+                        token={this.onToken}
+                        zipCode
+                        label="Pay 10 Rs"
+                        panelLabel="Pay {{amount}}"
+                    />
+                </div>
             </React.Fragment>
         )
     }
@@ -130,3 +154,6 @@ const mapStateToProps=state=>{
     };
 }
 export default connect(mapStateToProps)(Research);
+
+
+ 
