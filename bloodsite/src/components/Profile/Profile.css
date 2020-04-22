@@ -1,0 +1,18 @@
+.profilepicdiv {
+	margin: 50px;
+}
+
+.image {
+	border-radius: 50%;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 20%;
+}
+
+.data {
+	margin: auto;
+	display: block;
+	font-family: 'Nosifer', sans-serif;
+	text-align: center
+}
