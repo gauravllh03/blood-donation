@@ -215,8 +215,40 @@ class Donate extends Component
         }
         return isValid;
     }
-    donateBloodHandler=()=>{
-        let userId= localStorage.getItem('userId')
+    donateBloodHandler=async()=>{
+        let userId= localStorage.getItem('userId');
+        let urldate='https://bloodsite-87a36.firebaseio.com/dates/'+userId+'.json';
+        localStorage.setItem("fetched","");
+        await axios.get(urldate)
+        .then(resp=>{
+            console.log(resp.data.values);
+            localStorage.setItem("fetched",resp.data.values);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+
+        var d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        let x= [year, month, day].join('-');
+
+
+        let dateupdate=x+" "+localStorage.getItem("fetched");
+        await axios.put(urldate,{values:dateupdate})
+        .then(resp=>{
+            console.log(resp.data+"posted bro");
+        })
+        .catch(err=>{
+            console.log(err);
+        })
         let obj={
             "name":this.state.controls.name.value,
             "bloodgroup":this.state.controls.bloodgroup.value,
@@ -226,7 +258,7 @@ class Donate extends Component
             "email":localStorage.getItem("email")
         };
         let url='https://bloodsite-87a36.firebaseio.com/donated.json';
-        axios.post(url,obj)
+        await axios.post(url,obj)
         .then(response=>{
             console.log(response.data);
         })
@@ -270,6 +302,8 @@ class Donate extends Component
             formToggle: !currentState.formToggle, 
         }));
     }
+
+
     toggleFormsDonate=()=>{
         let toggle= this.state.formToggle;
         if(!toggle)return;

@@ -34,10 +34,26 @@
 }
 
 
+.Heatmap
+{
+	width:700px;
+	margin:auto;
+	margin-top: 50px !important;
+	margin-bottom: 50px !important;
+	border:2px solid white;
+	padding: 15px;
+}
+
+
 @media(max-width:700px)
 {
 	.contribute
 	{
 		width:70%;
+		height:100%
+	}
+	.Heatmap
+	{
+		width:80%;
 	}
 }
