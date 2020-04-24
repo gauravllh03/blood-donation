@@ -121,18 +121,19 @@ class Profile extends Component {
 		if(!this.state.loading && this.state.values) {
 			profileData = (
 				<div>
-					<div className={classes.profilepicdiv}>
-						<img className={classes.image} src={profilepic} alt="profilepic" />
+					<div className={classes.profile}>
+						<div className={classes.profilepicdiv}>
+							<img className={classes.image} src={profilepic} alt="profilepic" />
+						</div>
+						<div className={classes.data}>
+							<h3>{this.state.name}</h3>
+							<p><span>Age: </span>{this.state.age}</p>
+							<p><span>Email: </span>{this.state.email}</p>
+							<p><span>Gender: </span>{this.state.gender}</p>
+							<p><span>Blood Group: </span>{this.state.bloodgroup}</p>
+							<p><span>Total Blood Donated: </span>{this.state.bloodVol}</p>
+						</div>
 					</div>
-					<div className={classes.data}>
-						<h3>Name: {this.state.name}</h3>
-						<p>Age: {this.state.age}</p>
-						<p>Email: {this.state.email}</p>
-						<p>Gender: {this.state.gender}</p>
-						<p>Blood Group: {this.state.bloodgroup}</p>
-						<p>Total Blood Donated: {this.state.bloodVol}</p>
-					</div>
-				
 
 					<div className={classes.Heatmap}>
 						<p style={{textAlign:"center",color:"wheat"}}>Your Donation HEATMAP 2020 &#128512;</p>
