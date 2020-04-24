@@ -12,7 +12,7 @@
     box-sizing: border-box;
     transition:transform 0.5s ease-out;
 }
-@media (min-width:971px)
+@media (min-width:1050px)
 {
     .SideDrawer{
         display: none;

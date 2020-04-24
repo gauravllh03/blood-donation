@@ -49,7 +49,9 @@ const questionPage = (props) =>{
               counter={props.questionId}
               total={props.questionTotal}
             />
-            <p>{props.timer}</p>
+            <div className={classes.timer}>
+              <p className={classes.para}>{props.timer}</p>
+            </div>
             <div className={classes.hearts}>{hearts}</div>
           </span>
           <Question content={props.question} />

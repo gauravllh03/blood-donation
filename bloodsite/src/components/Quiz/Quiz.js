@@ -7,7 +7,7 @@ import QuestionPage from './QuestionPage/QuestionPage';
 import Result from './Result/Result';
 import axios from 'axios';
 import * as actions from '../../store/actions/index';
-
+import Slide from '../Quiz/Result/Slide';
 class Quiz extends Component
 {
     constructor(props) {
@@ -196,7 +196,7 @@ class Quiz extends Component
         }
         return <React.Fragment>
             {redirect}
-                <p className={classes.para}>Play quiz friends</p>
+            <Slide/> 
             {!this.state.result?this.renderQuiz():this.renderResult()}
         </React.Fragment>;
     }
