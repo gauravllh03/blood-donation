@@ -6,7 +6,6 @@ import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Button from '../../UI/Button/Button'
 function Result(props) {
-  console.log(props.answerOptions);
   const correctPer=(props.answerOptions["Correct"]?props.answerOptions["Correct"]:0)/5*100;
   const incorrectPer=(props.answerOptions["Incorrect"]?props.answerOptions["Incorrect"]:0)/5*100;
 
