@@ -160,9 +160,9 @@ class Quiz extends Component
         }
     }
 
-    timerEnds(){
-        this.deductLives(0);
-        this.setResults(this.getResults())
+    async timerEnds(){
+        await this.deductLives(0);
+        this.setResults({"Incorrect":1})
     }
     renderQuiz(){
         return (
