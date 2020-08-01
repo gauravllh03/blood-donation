@@ -1284,9 +1284,9 @@ bluebird@^3.4.7:
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
-  version "4.11.8"
-  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
-  integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
+  version "4.11.9"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.9.tgz#26d556829458f9d1e81fc48952493d0ba3507828"
+  integrity sha512-E6QoYqCKZfgatHTdHzs1RRKP7ip4vvm+EyRUeE2RF0NblwVvb0p6jSVeNTOFxPn26QXN2o6SMfNxKp6kU8zQaw==
 
 body-parser@1.19.0:
   version "1.19.0"
@@ -2582,9 +2582,9 @@ electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30:
   integrity sha512-OzSVjWpsRhJyr9PSAXkeloSe6e9viU2ToGt1wXlXFsGcxuI9vlsnalL+V/AM59Z2pEo3wRxIddtOGsT7Y6x/sQ==
 
 elliptic@^6.0.0:
-  version "6.5.2"
-  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.2.tgz#05c5678d7173c049d8ca433552224a495d0e3762"
-  integrity sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.3.tgz#cb59eb2efdaf73a0bd78ccd7015a62ad6e0f93d6"
+  integrity sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==
   dependencies:
     bn.js "^4.4.0"
     brorand "^1.0.1"
@@ -3755,6 +3755,11 @@ he@1.2.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
+
+heatmap-calendar-react@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/heatmap-calendar-react/-/heatmap-calendar-react-1.0.1.tgz#7dfb5d02a3051d8e0aa39de94abd417cc3df45c2"
+  integrity sha512-Tva6FNE3TVMckriNzOpEO0/t+G8e2r1Wjt9dDOryUJmL9tLUHC2dGOTbSdkfuoPzLy2CTAGr4wzbG0wexkANqA==
 
 history@^4.9.0:
   version "4.10.1"
@@ -6860,6 +6865,11 @@ react@^16.12.0, react@^16.7.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+reactjs-calendar-heatmap@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/reactjs-calendar-heatmap/-/reactjs-calendar-heatmap-0.0.10.tgz#711a9282ed5d7e51e8a2804efd2e628ea6f6af53"
+  integrity sha512-ailKpUVakA4nkbirP4dzOE0Lz8QjleSdTMiRr7om9/DdBpWdhoWwqLNTa7syoMsx0xEboFqw2suFjJ4Upu0OIw==
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
