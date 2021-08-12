@@ -3756,6 +3756,11 @@ he@1.2.x:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
+heatmap-calendar-react@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/heatmap-calendar-react/-/heatmap-calendar-react-1.0.1.tgz#7dfb5d02a3051d8e0aa39de94abd417cc3df45c2"
+  integrity sha512-Tva6FNE3TVMckriNzOpEO0/t+G8e2r1Wjt9dDOryUJmL9tLUHC2dGOTbSdkfuoPzLy2CTAGr4wzbG0wexkANqA==
+
 history@^4.9.0:
   version "4.10.1"
   resolved "https://npm.mobiscroll.com/history/-/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
@@ -5979,9 +5984,9 @@ path-key@^2.0.0:
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.5, path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-to-regexp@0.1.7:
   version "0.1.7"
@@ -6860,6 +6865,11 @@ react@^16.12.0, react@^16.7.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+reactjs-calendar-heatmap@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/reactjs-calendar-heatmap/-/reactjs-calendar-heatmap-0.0.10.tgz#711a9282ed5d7e51e8a2804efd2e628ea6f6af53"
+  integrity sha512-ailKpUVakA4nkbirP4dzOE0Lz8QjleSdTMiRr7om9/DdBpWdhoWwqLNTa7syoMsx0xEboFqw2suFjJ4Upu0OIw==
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
